@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://dhjk3fyw7fwa3"]
+
+[ext_resource type="Script" uid="uid://ddt72a28saeab" path="res://player/SpringCharacterController.cs" id="1_8e0qh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_05vwp"]
+size = Vector3(21, 1, 23.35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8e0qh"]
+albedo_color = Color(0.68235296, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xfdg8"]
+size = Vector3(1.7368164, 2.0048828, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31nqk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nfpl"]
+albedo_color = Color(0, 0, 0.23137255, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31nqk"]
+size = Vector3(1, 1.4, 1)
+
+[node name="MovementPlayground" type="Node3D" unique_id=1695330122]
+
+[node name="Room" type="Node3D" parent="." unique_id=681148541]
+
+[node name="Floor" type="RigidBody3D" parent="Room" unique_id=409389517]
+gravity_scale = 0.0
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor" unique_id=2099607470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5856323, -0.52608776, 0.44850922)
+shape = SubResource("BoxShape3D_05vwp")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Floor" unique_id=1055288022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5856323, -0.52608776, 0.50476074)
+size = Vector3(21.001587, 1, 23.358643)
+material = SubResource("StandardMaterial3D_8e0qh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Room" unique_id=1452192217]
+transform = Transform3D(0.9997495, 0.012707958, 0.018423552, -0.02238123, 0.5676531, 0.82296354, 0, -0.82316977, 0.56779534, 0, 54.272736, 0)
+
+[node name="Obstacles" type="Node3D" parent="Room" unique_id=1219623965]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Room/Obstacles" unique_id=362119513]
+transform = Transform3D(0.8964266, 0.42111275, 0.13814254, -0.44319224, 0.85176754, 0.27941528, 0, -0.31169897, 0.950181, -4.504098, 1.145211, -3.0580578)
+freeze = true
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Room/Obstacles/RigidBody3D" unique_id=1050032141]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0)
+size = Vector3(1.7368164, 2.0048828, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Obstacles/RigidBody3D" unique_id=1043608437]
+shape = SubResource("BoxShape3D_xfdg8")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Room/Obstacles" unique_id=415178043]
+transform = Transform3D(0.52851844, -0.29934272, 0.79439414, 0.8339995, 0.3577701, -0.42005384, -0.15847048, 0.88453066, 0.43873987, 3.6316164, 1.6345048, 4.7311425)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Obstacles" unique_id=1620812658]
+transform = Transform3D(0.9669873, -0.2548246, 0, 0.2548246, 0.9669873, 0, 0, 0, 1, 0, 0.8309686, 8.040312)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Room/Obstacles" unique_id=109329831]
+transform = Transform3D(-0.52778506, -0.45142984, 0.71948165, 0.83446383, -0.117543794, 0.5383804, -0.15847045, 0.88453066, 0.4387399, 2.8694148, 2.1215155, -3.2217665)
+size = Vector3(1.7368164, 2.0048828, 1)
+
+[node name="SpringCharacter" type="RigidBody3D" parent="." unique_id=1097960717 node_paths=PackedStringArray("_bodyCenter")]
+script = ExtResource("1_8e0qh")
+_bodyCenter = NodePath("BodyCenter")
+
+[node name="BodyCenter" type="Node3D" parent="SpringCharacter" unique_id=1838286292]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+
+[node name="Body Box3D" type="CSGBox3D" parent="SpringCharacter" unique_id=797762209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+size = Vector3(1, 1.4, 1)
+material = SubResource("StandardMaterial3D_31nqk")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SpringCharacter/Body Box3D" unique_id=1317497263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38726807, 0.12002885)
+size = Vector3(1, 0.22546387, 1)
+material = SubResource("StandardMaterial3D_2nfpl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpringCharacter" unique_id=712613275]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_31nqk")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=338533741]
+transform = Transform3D(1, -1.1175871e-08, 7.450581e-09, 1.1175871e-08, 1, -8.326673e-17, -7.450581e-09, 1.6653345e-16, 1, 0, 2.1875048, 7.397283)

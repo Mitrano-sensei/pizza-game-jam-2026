@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cf0242nyb47x4"]
+
+[ext_resource type="PackedScene" uid="uid://kcwavihn2kbp" path="res://player/mirror_man.tscn" id="1_0f027"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2nfpl"]
+size = Vector3(21, 1, 23.35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31nqk"]
+albedo_color = Color(0.68235296, 0, 0, 1)
+
+[node name="MainScene" type="Node3D" unique_id=364970006]
+
+[node name="MirrorMan" parent="." unique_id=1117311011 instance=ExtResource("1_0f027")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.91132736, 0)
+
+[node name="Room" type="Node3D" parent="." unique_id=1825571663]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Room" unique_id=908235886]
+gravity_scale = 0.0
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/RigidBody3D" unique_id=465799412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5856323, -0.52608776, 0.44850922)
+shape = SubResource("BoxShape3D_2nfpl")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/RigidBody3D" unique_id=1640493781]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5856323, -0.52608776, 0.50476074)
+size = Vector3(21.001587, 1, 23.358643)
+material = SubResource("StandardMaterial3D_31nqk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Room" unique_id=1818899291]
+transform = Transform3D(0.9997495, 0.012707958, 0.018423552, -0.02238123, 0.5676531, 0.82296354, 0, -0.82316977, 0.56779534, 0, 54.272736, 0)
+
+[node name="Obstacles" type="Node3D" parent="Room" unique_id=1740947876]
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Room/Obstacles" unique_id=1203912345]
+transform = Transform3D(-0.21216142, 0.92772424, -0.30710733, -0.62382096, 0.113328606, 0.77330714, 0.75221986, 0.3556461, 0.55469006, -4.1699085, 0.54444504, -1.3032799)
+size = Vector3(1.7368164, 2.0048828, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Room/Obstacles" unique_id=927315710]
+transform = Transform3D(0.52851844, -0.29934272, 0.79439414, 0.8339995, 0.3577701, -0.42005384, -0.15847048, 0.88453066, 0.43873987, 3.6316164, 1.6345048, 4.7311425)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Obstacles" unique_id=885564436]
+transform = Transform3D(0.9669873, -0.2548246, 0, 0.2548246, 0.9669873, 0, 0, 0, 1, 0, 0.8309686, 8.040312)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Room/Obstacles" unique_id=522761092]
+transform = Transform3D(-0.52778506, -0.45142984, 0.71948165, 0.83446383, -0.117543794, 0.5383804, -0.15847045, 0.88453066, 0.4387399, 2.8694148, 2.1215155, -3.2217665)
+size = Vector3(1.7368164, 2.0048828, 1)

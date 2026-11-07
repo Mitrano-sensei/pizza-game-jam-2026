@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://kcwavihn2kbp"]
+
+[ext_resource type="Script" uid="uid://bcmbam1odwxe7" path="res://player/PlayerController.cs" id="1_wrgjt"]
+[ext_resource type="PackedScene" uid="uid://b04pmwn4hehx1" path="res://player/mirror/mirror.tscn" id="2_vueb6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31nqk"]
+size = Vector3(1, 1.8, 0.3)
+
+[node name="MirrorMan" type="CharacterBody3D" unique_id=1117311011]
+script = ExtResource("1_wrgjt")
+
+[node name="Model" type="Node3D" parent="." unique_id=146212495]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Model" unique_id=1016755760]
+layers = 512
+size = Vector3(1, 1.8, 0.3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1481568969]
+shape = SubResource("BoxShape3D_31nqk")
+
+[node name="PlayerCamera" type="Camera3D" parent="." unique_id=41881592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09733176, 1.3983111)
+
+[node name="Mirror" parent="." unique_id=410374777 instance=ExtResource("2_vueb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6873009, 0.20884582)
+
+[node name="Surface" parent="Mirror" index="0" unique_id=1761424297]
+transform = Transform3D(1, 0, 0, 0, 1.475, 0, 0, 0, 1, 0, 0.735, -0.053111568)
+
+[node name="MirrorCamera" parent="Mirror/SubViewport" parent_id_path=PackedInt32Array(410374777, 565492617) index="0" unique_id=1497034598]
+transform = Transform3D(-0.2108208, 0, -1.8430539e-08, 0, 0.2108208, 0, 1.8430539e-08, 0, -0.2108208, 0, 0.91132736, -0.5)
+cull_mask = 1048063
+
+[editable path="Mirror"]
