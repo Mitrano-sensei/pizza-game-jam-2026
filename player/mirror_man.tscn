@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://kcwavihn2kbp"]
 
-[ext_resource type="Script" uid="uid://bcmbam1odwxe7" path="res://player/PlayerController.cs" id="1_wrgjt"]
+[ext_resource type="Script" uid="uid://bcmbam1odwxe7" path="res://player/SimplePlayerController.cs" id="1_wrgjt"]
 [ext_resource type="PackedScene" uid="uid://b04pmwn4hehx1" path="res://player/mirror/mirror.tscn" id="2_vueb6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_31nqk"]

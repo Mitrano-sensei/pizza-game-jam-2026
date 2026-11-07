@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bg62b30f55mj4"]
+
+[ext_resource type="Script" uid="uid://ddt72a28saeab" path="res://player/SpringCharacterController.cs" id="1_yxuru"]
+[ext_resource type="PackedScene" uid="uid://b04pmwn4hehx1" path="res://player/mirror/mirror.tscn" id="2_asbkd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31nqk"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_iefq4"]
+size = Vector2(0.9, 1.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31nqk"]
+size = Vector3(1, 1.4, 0.12)
+
+[node name="SpringCharacter" type="RigidBody3D" unique_id=1425243780 node_paths=PackedStringArray("_bodyCenter")]
+script = ExtResource("1_yxuru")
+_bodyCenter = NodePath("BodyCenter")
+_lookAtSpeed = 2.4
+_lookDebounce = 0.15
+
+[node name="BodyCenter" type="Node3D" parent="." unique_id=688641747]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+
+[node name="Body Box3D" type="CSGBox3D" parent="." unique_id=1901043580]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+layers = 512
+size = Vector3(1, 1.4, 0.12)
+material = SubResource("StandardMaterial3D_31nqk")
+
+[node name="Mirror" parent="Body Box3D" unique_id=410374777 instance=ExtResource("2_asbkd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6146209, 0.068475544)
+
+[node name="Surface" parent="Body Box3D/Mirror" index="0" unique_id=1761424297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.621215, 0)
+layers = 512
+mesh = SubResource("QuadMesh_iefq4")
+
+[node name="SubViewport" parent="Body Box3D/Mirror" index="1" unique_id=565492617]
+size = Vector2i(461, 666)
+
+[node name="MirrorCamera" parent="Body Box3D/Mirror/SubViewport" index="0" unique_id=1497034598]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.4, -0.5)
+cull_mask = 1048063
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=747497448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_31nqk")
+
+[editable path="Body Box3D/Mirror"]
