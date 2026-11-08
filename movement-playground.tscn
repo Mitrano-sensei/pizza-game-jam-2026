@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bg62b30f55mj4" path="res://player/spring_character.tscn" id="1_iefq4"]
 [ext_resource type="Script" uid="uid://bbph4twdunbc" path="res://laser/receiver/DebugLaserReceiver.cs" id="1_nj42d"]
+[ext_resource type="Script" uid="uid://dlh1dui7ngqcj" path="res://laser/receiver/PushableObject.cs" id="2_ph0ep"]
+[ext_resource type="Script" uid="uid://cbg3csxnu6so1" path="res://laser/receiver/DestructibleObject.cs" id="3_c8nxr"]
 [ext_resource type="PackedScene" uid="uid://dhopd7ju88gr2" path="res://player/camera/camera_holder.tscn" id="3_sdg16"]
 [ext_resource type="Script" uid="uid://b2epsu7r2q8ve" path="res://laser/receiver/SimpleReflector.cs" id="3_t8rmp"]
 [ext_resource type="Script" uid="uid://b2h3g1ypa4sx0" path="res://laser/LaserLauncher.cs" id="4_1rh8u"]
@@ -24,6 +26,11 @@ size = Vector3(1.7368164, 2.0048828, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nj42d"]
 albedo_color = Color(0.22352941, 0.72156864, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31nqk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8nxr"]
+albedo_color = Color(0.50980395, 0.10980392, 0.078431375, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0f027"]
 transparency = 1
@@ -96,6 +103,34 @@ material = SubResource("StandardMaterial3D_nj42d")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Obstacles/RigidBody3D" unique_id=1043608437]
 shape = SubResource("BoxShape3D_xfdg8")
 
+[node name="YeetObstacle2" type="RigidBody3D" parent="Room/Obstacles" unique_id=1492692551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4427302, 1.7557161, 1.6660898)
+script = ExtResource("2_ph0ep")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Obstacles/YeetObstacle2" unique_id=2108628093]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Obstacles/YeetObstacle2" unique_id=1714339582]
+shape = SubResource("BoxShape3D_31nqk")
+
+[node name="YeetObstacle" type="RigidBody3D" parent="Room/Obstacles" unique_id=2035394332]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.407157, 1.1729419, -0.9083519)
+script = ExtResource("2_ph0ep")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Obstacles/YeetObstacle" unique_id=224241581]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Obstacles/YeetObstacle" unique_id=1450688711]
+shape = SubResource("BoxShape3D_31nqk")
+
+[node name="Destroy Obstacle" type="RigidBody3D" parent="Room/Obstacles" unique_id=940002508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4650826, 1.1729419, 1.3681126)
+script = ExtResource("3_c8nxr")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Obstacles/Destroy Obstacle" unique_id=1928235977]
+material = SubResource("StandardMaterial3D_c8nxr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Obstacles/Destroy Obstacle" unique_id=744340071]
+shape = SubResource("BoxShape3D_31nqk")
+
 [node name="SpringCharacter" parent="." unique_id=1425243780 instance=ExtResource("1_iefq4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0334425)
 
@@ -104,6 +139,7 @@ script = ExtResource("3_t8rmp")
 
 [node name="Mirror" parent="SpringCharacter" index="3" unique_id=1001270284]
 script = ExtResource("4_t8rmp")
+_reflectiveFace = Vector3(0, 0, 1)
 
 [node name="CameraHolder" parent="." unique_id=851691229 node_paths=PackedStringArray("_target") instance=ExtResource("3_sdg16")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3577204, 5.969884)
