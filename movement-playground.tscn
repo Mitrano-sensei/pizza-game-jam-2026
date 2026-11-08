@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://dhjk3fyw7fwa3"]
 
-[ext_resource type="Script" uid="uid://bbph4twdunbc" path="res://laser/DebugLaserReceiver.cs" id="1_a06dt"]
 [ext_resource type="PackedScene" uid="uid://bg62b30f55mj4" path="res://player/spring_character.tscn" id="1_iefq4"]
-[ext_resource type="Script" uid="uid://b2epsu7r2q8ve" path="res://laser/SimpleReflector.cs" id="3_1rh8u"]
+[ext_resource type="Script" uid="uid://bbph4twdunbc" path="res://laser/receiver/DebugLaserReceiver.cs" id="1_nj42d"]
 [ext_resource type="PackedScene" uid="uid://dhopd7ju88gr2" path="res://player/camera/camera_holder.tscn" id="3_sdg16"]
+[ext_resource type="Script" uid="uid://b2epsu7r2q8ve" path="res://laser/receiver/SimpleReflector.cs" id="3_t8rmp"]
 [ext_resource type="Script" uid="uid://b2h3g1ypa4sx0" path="res://laser/LaserLauncher.cs" id="4_1rh8u"]
 [ext_resource type="Script" uid="uid://doe5ix2j21i5s" path="res://utilities/ObjectPool.cs" id="6_a1610"]
 [ext_resource type="PackedScene" uid="uid://5mnyk1oarsdd" path="res://laser/simple_laser_beam.tscn" id="7_nj42d"]
+[ext_resource type="Script" uid="uid://cqq3rexaq3p0c" path="res://laser/receiver/lamp/Lamp.cs" id="8_nj42d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_05vwp"]
 size = Vector3(100, 1, 100)
@@ -28,6 +29,13 @@ albedo_color = Color(1, 0.14117648, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rh8u"]
 albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0f027"]
+transparency = 1
+albedo_color = Color(0.06666667, 0.49411765, 0.10980392, 1)
+emission_enabled = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_31nqk"]
 
 [node name="MovementPlayground" type="Node3D" unique_id=1695330122]
 
@@ -54,7 +62,9 @@ transform = Transform3D(0.9997495, 0.012707958, 0.018423552, -0.02238123, 0.5676
 [node name="RigidBody3D" type="RigidBody3D" parent="Room/Obstacles" unique_id=362119513]
 transform = Transform3D(0.8964266, 0.42111275, 0.13814254, -0.44319224, 0.85176754, 0.27941528, 0, -0.31169897, 0.950181, -4.504098, 1.145211, -3.0580578)
 freeze = true
-script = ExtResource("1_a06dt")
+script = ExtResource("1_nj42d")
+ReceiverType = 1
+metadata/_edit_lock_ = true
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Room/Obstacles/RigidBody3D" unique_id=1050032141]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -80,8 +90,8 @@ material = SubResource("StandardMaterial3D_1rh8u")
 [node name="SpringCharacter" parent="." unique_id=1425243780 instance=ExtResource("1_iefq4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0334425)
 
-[node name="Body Box3D" parent="SpringCharacter" index="1" unique_id=1901043580]
-script = ExtResource("3_1rh8u")
+[node name="CollisionShape3D" parent="SpringCharacter" index="2" unique_id=747497448]
+script = ExtResource("3_t8rmp")
 
 [node name="CameraHolder" parent="." unique_id=851691229 node_paths=PackedStringArray("_target") instance=ExtResource("3_sdg16")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3577204, 5.969884)
@@ -90,9 +100,11 @@ _distance = 1.0
 _height = 1.75
 
 [node name="LaserLauncher" type="Node3D" parent="." unique_id=244416416 node_paths=PackedStringArray("_laserOrigin", "_laserPointPool")]
-transform = Transform3D(0.8267137, 0, -0.5626228, 0, 1, 0, 0.5626228, 0, 0.8267137, -3.2249413, 0.9628613, 3.6226504)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1966953, 0.712806, 4.717865)
 script = ExtResource("4_1rh8u")
 _laserOrigin = NodePath("LaserOrigin")
+_maxBounces = 12
+_color = 1
 _laserPointPool = NodePath("../LaserPool")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="LaserLauncher" unique_id=9881938]
@@ -105,6 +117,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.76)
 [node name="LaserPool" type="Node3D" parent="." unique_id=1456983742]
 script = ExtResource("6_a1610")
 _scene = ExtResource("7_nj42d")
+
+[node name="Lamp" type="RigidBody3D" parent="." unique_id=1726198708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.365908, 0.77775574, 1.0199637)
+gravity_scale = 0.0
+freeze = true
+script = ExtResource("8_nj42d")
+_material = SubResource("StandardMaterial3D_0f027")
+_color = 1
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Lamp" unique_id=1743795924]
+material = SubResource("StandardMaterial3D_0f027")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lamp" unique_id=1893523024]
+shape = SubResource("SphereShape3D_31nqk")
 
 [editable path="SpringCharacter"]
 [editable path="SpringCharacter/Body Box3D/Mirror"]

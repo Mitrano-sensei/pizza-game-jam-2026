@@ -1,7 +1,6 @@
 using Godot;
 using System.Collections.Generic;
 using System.Linq;
-using pizzagamejam.laser;
 
 public partial class LaserLauncher : Node3D
 {
@@ -10,6 +9,7 @@ public partial class LaserLauncher : Node3D
     [Export] private float _maxDistance = 100f;
     [Export] private int _maxBounces = 3;
     [Export(PropertyHint.Layers3DPhysics)] private uint _collisionMask = 1;
+    [Export] private LaserColor _color = LaserColor.Red;
 
     [ExportCategory("Object Pool Settings")]
     [Export] private ObjectPool _laserPointPool;
@@ -45,7 +45,7 @@ public partial class LaserLauncher : Node3D
             var end = _points[i + 1];
 
             var laser = (ILaserBeam)_laserPointPool.Get();
-            laser.SetLaser(start, end);
+            laser.SetLaser(start, end, _color);
             _currentLasers.Add(laser);
         }
     }
@@ -81,7 +81,7 @@ public partial class LaserLauncher : Node3D
             var colliderChildren = collider.FindChildren("*", "", true, false);
             var reflective = collider as ILaserReflective ?? colliderChildren.OfType<ILaserReflective>().FirstOrDefault();
             var receiver = collider as ILaserReceiver ?? colliderChildren.OfType<ILaserReceiver>().FirstOrDefault();
-            var receiverType = receiver?.OnLaserHit(pos, direction) ?? LaserReceiverType.Continue;
+            var receiverType = receiver?.OnLaserHit(pos, direction, _color) ?? LaserReceiverType.Continue;
 
             // Make the Beam stop
             if (receiverType == LaserReceiverType.StopBouncing) break; // Stop bouncing if the receiver indicates to do so
