@@ -134,12 +134,12 @@ shape = SubResource("BoxShape3D_31nqk")
 [node name="SpringCharacter" parent="." unique_id=1425243780 instance=ExtResource("1_iefq4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0334425)
 
-[node name="CollisionShape3D" parent="SpringCharacter" index="1" unique_id=747497448]
-script = ExtResource("3_t8rmp")
-
-[node name="Mirror" parent="SpringCharacter" index="3" unique_id=1001270284]
+[node name="MirrorCollider" parent="SpringCharacter" index="1" unique_id=1001270284]
 script = ExtResource("4_t8rmp")
 _reflectiveFace = Vector3(0, 0, 1)
+
+[node name="BodyCollider" parent="SpringCharacter" index="2" unique_id=747497448]
+script = ExtResource("3_t8rmp")
 
 [node name="CameraHolder" parent="." unique_id=851691229 node_paths=PackedStringArray("_target") instance=ExtResource("3_sdg16")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3577204, 5.969884)
