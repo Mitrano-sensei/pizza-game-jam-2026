@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bx30tk3v4ike4"]
+
+[ext_resource type="Script" uid="uid://drdexgx3c5pw7" path="res://ui/MainMenu.cs" id="1_menu"]
+[ext_resource type="PackedScene" uid="uid://csyx1nav0op4k" path="res://levels/tutorial-1.tscn" id="2_lvl0"]
+[ext_resource type="PackedScene" uid="uid://dfe8d2k71ce86" path="res://levels/tutorial-2.tscn" id="3_lvl1"]
+
+[node name="MainMenu" type="Control" unique_id=798242419 node_paths=PackedStringArray("_playButton", "_quitButton", "_levelPanel", "_levelList")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+_playButton = NodePath("Buttons/PlayButton")
+_quitButton = NodePath("Buttons/QuitButton")
+_levelPanel = NodePath("LevelPanel")
+_levelList = NodePath("LevelPanel/Margin/VBox/LevelList")
+_levels = Array[PackedScene]([ExtResource("2_lvl0"), ExtResource("3_lvl1")])
+
+[node name="Buttons" type="VBoxContainer" parent="." unique_id=946791172]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="PlayButton" type="Button" parent="Buttons" unique_id=1043972918]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="Buttons" unique_id=438818653]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Quit"
+
+[node name="LevelPanel" type="PanelContainer" parent="." unique_id=117833245]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 300.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="LevelPanel" unique_id=1761386716]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="LevelPanel/Margin" unique_id=22621902]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="LevelPanel/Margin/VBox" unique_id=122748704]
+layout_mode = 2
+text = "Levels"
+horizontal_alignment = 1
+
+[node name="LevelList" type="VBoxContainer" parent="LevelPanel/Margin/VBox" unique_id=1780701444]
+layout_mode = 2
+theme_override_constants/separation = 8

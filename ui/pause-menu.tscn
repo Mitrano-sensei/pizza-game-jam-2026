@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://dgss4nmngacuu"]
+
+[ext_resource type="Script" uid="uid://cxs0o0un8yh2w" path="res://ui/PauseMenu.cs" id="1_pause"]
+[ext_resource type="PackedScene" uid="uid://csyx1nav0op4k" path="res://levels/tutorial-1.tscn" id="2_lvl0"]
+[ext_resource type="PackedScene" uid="uid://dfe8d2k71ce86" path="res://levels/tutorial-2.tscn" id="3_lvl1"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=2059841664 node_paths=PackedStringArray("_resumeButton", "_resetButton", "_levelSelectButton", "_mainMenuButton", "_quitButton", "_levelPanel", "_levelList", "_volumeSlider")]
+layer = 2
+script = ExtResource("1_pause")
+_resumeButton = NodePath("Center/Panel/Margin/VBox/ResumeButton")
+_resetButton = NodePath("Center/Panel/Margin/VBox/ResetButton")
+_levelSelectButton = NodePath("Center/Panel/Margin/VBox/LevelSelectButton")
+_mainMenuButton = NodePath("Center/Panel/Margin/VBox/MainMenuButton")
+_quitButton = NodePath("Center/Panel/Margin/VBox/QuitButton")
+_levelPanel = NodePath("LevelPanel")
+_levelList = NodePath("LevelPanel/Margin/VBox/LevelList")
+_volumeSlider = NodePath("Center/Panel/Margin/VBox/VolumeSlider")
+_levels = Array[PackedScene]([ExtResource("2_lvl0"), ExtResource("3_lvl1")])
+
+[node name="Dim" type="ColorRect" parent="." unique_id=1632985695]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=1261172201]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Center" unique_id=500591712]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Center/Panel" unique_id=1519512823]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Center/Panel/Margin" unique_id=1058152995]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Center/Panel/Margin/VBox" unique_id=1680431652]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Center/Panel/Margin/VBox" unique_id=1050754147]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Resume"
+
+[node name="ResetButton" type="Button" parent="Center/Panel/Margin/VBox" unique_id=1145261518]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Reset"
+
+[node name="LevelSelectButton" type="Button" parent="Center/Panel/Margin/VBox" unique_id=2521067]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Level Select"
+
+[node name="MainMenuButton" type="Button" parent="Center/Panel/Margin/VBox" unique_id=21901988]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Quit - To Main Menu"
+
+[node name="QuitButton" type="Button" parent="Center/Panel/Margin/VBox" unique_id=55985716]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Quit - To Desktop"
+
+[node name="VolumeLabel" type="Label" parent="Center/Panel/Margin/VBox" unique_id=1294760512]
+layout_mode = 2
+text = "Sound"
+
+[node name="VolumeSlider" type="HSlider" parent="Center/Panel/Margin/VBox" unique_id=1475566184]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="LevelPanel" type="PanelContainer" parent="." unique_id=2115146294]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 300.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="LevelPanel" unique_id=496149951]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="LevelPanel/Margin" unique_id=534904246]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="LevelPanel/Margin/VBox" unique_id=1182137445]
+layout_mode = 2
+text = "Levels"
+horizontal_alignment = 1
+
+[node name="LevelList" type="VBoxContainer" parent="LevelPanel/Margin/VBox" unique_id=1660032636]
+layout_mode = 2
+theme_override_constants/separation = 8
