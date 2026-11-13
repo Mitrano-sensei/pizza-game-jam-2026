@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="pizza-game-jam"
-run/main_scene="uid://bx30tk3v4ike4"
+run/main_scene="uid://csyx1nav0op4k"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
