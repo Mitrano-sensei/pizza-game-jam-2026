@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cjt05k50wprk2"]
+
+[ext_resource type="PackedScene" uid="uid://dyrs4bh51ebtb" path="res://assets/lamp/lamp.glb" id="1_ho6c8"]
+
+[node name="Lamp" type="Node3D" unique_id=838867157]
+
+[node name="lamp" parent="." unique_id=645859587 instance=ExtResource("1_ho6c8")]
