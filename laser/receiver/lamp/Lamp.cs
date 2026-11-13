@@ -8,12 +8,14 @@ public partial class Lamp : Node3D, ILaserReceiver, ICameraFocusable
     
     [ExportCategory("Lamp Countdown Settings")]
     [Export] private float _countdownTimeInSeconds = 10.0f;
-    
+    [Export] private float _timeToLight = 1f;
+
     [ExportCategory("Camera Focus Settings")]
     [Export] private Camera3D _camera;
 
     private StandardMaterial3D _defaultMaterialValue;
     private CountdownTimer _countdownTimer;
+    private HoldTimer _litTimer;
     private bool _isActive = false;
     
     [Signal] public delegate void LitEventHandler();
@@ -30,6 +32,8 @@ public partial class Lamp : Node3D, ILaserReceiver, ICameraFocusable
         
         _countdownTimer = new CountdownTimer(_countdownTimeInSeconds);
         _countdownTimer.Stop();
+
+        _litTimer = new HoldTimer(_timeToLight);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -49,6 +53,7 @@ public partial class Lamp : Node3D, ILaserReceiver, ICameraFocusable
     public LaserReceiverType OnLaserHit(Vector3 hitPoint, Vector3 incomingDirection, LaserColor color)
     {
         if (!Equals(_color, color)) return LaserReceiverType.StopBouncing;
+        if (!_isActive && !_litTimer.Hit()) return LaserReceiverType.StopBouncing;
 
         // GD.Print("Lamp received laser hit at " + hitPoint + " with incoming direction " + incomingDirection + " and color " + color);
         // Change color to _color

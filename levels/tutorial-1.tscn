@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://csyx1nav0op4k"]
 
 [ext_resource type="PackedScene" uid="uid://bg62b30f55mj4" path="res://player/spring_character.tscn" id="1_ayy1y"]
+[ext_resource type="Script" uid="uid://biqbyxf258skq" path="res://GameManager.cs" id="1_pyaib"]
 [ext_resource type="Script" uid="uid://b2epsu7r2q8ve" path="res://laser/receiver/SimpleReflector.cs" id="2_43kx8"]
 [ext_resource type="Script" uid="uid://bse40f8a65rmj" path="res://laser/receiver/OneSideReflector.cs" id="3_pyaib"]
 [ext_resource type="PackedScene" uid="uid://dhopd7ju88gr2" path="res://player/camera/camera_holder.tscn" id="4_4sh3t"]
@@ -37,7 +38,11 @@ uv1_scale = Vector3(25, 25, 25)
 [sub_resource type="BoxShape3D" id="BoxShape3D_pyaib"]
 size = Vector3(100, 0.1, 100)
 
-[node name="Tutorial1" type="Node3D" unique_id=1118483983]
+[node name="Tutorial1" type="Node3D" unique_id=1118483983 node_paths=PackedStringArray("_camera", "_lamps")]
+script = ExtResource("1_pyaib")
+_camera = NodePath("Character & Camera Stuff/CameraHolder")
+_lamps = [NodePath("Laser & Lamp Stuff/Lamp")]
+_nextLevel = "uid://dfe8d2k71ce86"
 
 [node name="Character & Camera Stuff" type="Node3D" parent="." unique_id=1596390477]
 
@@ -64,19 +69,8 @@ size = Vector2i(1126, 666)
 [node name="MirrorCamera" parent="Character & Camera Stuff/MirrorMan/Body Box3D/Mirror/SubViewport" index="0" unique_id=1497034598]
 current = true
 
-[node name="CameraHolder" parent="Character & Camera Stuff" unique_id=851691229 node_paths=PackedStringArray("_target") instance=ExtResource("4_4sh3t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3577204, 5.969884)
-collision_layer = 0
-collision_mask = 0
-_target = NodePath("../MirrorMan")
-_distance = 1.7
-_followSpeed = 16.0
-_height = 1.65
-_xAngle = -5.0
-
-[node name="Camera3D" parent="Character & Camera Stuff/CameraHolder" index="0" unique_id=117351306]
-current = true
-fov = 65.0
+[node name="CameraHolder" parent="Character & Camera Stuff" unique_id=851691229 node_paths=PackedStringArray("_playerTarget") instance=ExtResource("4_4sh3t")]
+_playerTarget = NodePath("../MirrorMan")
 
 [node name="Laser & Lamp Stuff" type="Node3D" parent="." unique_id=1532316960]
 
@@ -98,18 +92,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.76)
 script = ExtResource("6_ovcl4")
 _scene = ExtResource("7_tnlh7")
 
-[node name="Lamp" type="RigidBody3D" parent="Laser & Lamp Stuff" unique_id=504214050]
+[node name="Lamp" type="RigidBody3D" parent="Laser & Lamp Stuff" unique_id=504214050 node_paths=PackedStringArray("_camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1812944, 1.0614357, -9.672535)
 gravity_scale = 0.0
 freeze = true
 script = ExtResource("8_5wycy")
 _material = SubResource("StandardMaterial3D_cjpui")
+_camera = NodePath("Camera3D")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Laser & Lamp Stuff/Lamp" unique_id=1613010009]
 material = SubResource("StandardMaterial3D_cjpui")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Laser & Lamp Stuff/Lamp" unique_id=360555411]
 shape = SubResource("SphereShape3D_7d5l7")
+
+[node name="Camera3D" type="Camera3D" parent="Laser & Lamp Stuff/Lamp" unique_id=83993420]
+transform = Transform3D(1, 0, 0, 0, 0.76340103, 0.6459248, 0, -0.6459248, 0.76340103, 0, 1.8393373, 1.794209)
 
 [node name="Room" type="Node3D" parent="." unique_id=814368777]
 
@@ -191,4 +189,3 @@ omni_range = 56.81962
 
 [editable path="Character & Camera Stuff/MirrorMan"]
 [editable path="Character & Camera Stuff/MirrorMan/Body Box3D/Mirror"]
-[editable path="Character & Camera Stuff/CameraHolder"]
