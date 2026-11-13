@@ -10,6 +10,7 @@ public partial class LaserLauncher : Node3D
     [Export] private int _maxBounces = 3;
     [Export(PropertyHint.Layers3DPhysics)] private uint _collisionMask = 1;
     [Export] private LaserColor _color = LaserColor.Red;
+    [Export] private bool _isActive = true;
 
     [ExportCategory("Object Pool Settings")]
     [Export] private ObjectPool _laserPointPool;
@@ -20,6 +21,8 @@ public partial class LaserLauncher : Node3D
 
     public override void _PhysicsProcess(double delta)
     {
+        if (!_isActive) return;
+
         ComputePoints();
         if (!ComparePoints(_points, _lastPoints))
         {
@@ -32,12 +35,7 @@ public partial class LaserLauncher : Node3D
     {
         if (_points.Count < 2) return;
 
-        foreach (var laser in _currentLasers)
-        {
-            _laserPointPool.Release((Node3D)laser);
-        }
-
-        _currentLasers.Clear();
+        ClearLasers();
 
         for (int i = 0; i < _points.Count - 1; i++)
         {
@@ -110,5 +108,34 @@ public partial class LaserLauncher : Node3D
         }
 
         return true;
+    }
+    
+    public void SetEnabled(bool enabled)
+    {
+        _isActive = enabled;
+
+        if (enabled) return;
+        
+        ClearLasers();
+    }
+
+    public void Enable()
+    {
+        SetEnabled(true);
+    }
+    
+    public void Disable()
+    {
+        SetEnabled(false);
+    }
+
+    private void ClearLasers()
+    {
+        foreach (var laser in _currentLasers)
+        {
+            _laserPointPool.Release((Node3D)laser);
+        }
+
+        _currentLasers.Clear();
     }
 }

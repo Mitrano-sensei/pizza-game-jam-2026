@@ -1,14 +1,18 @@
 [gd_scene format=3 uid="uid://dfe8d2k71ce86"]
 
+[ext_resource type="Script" uid="uid://biqbyxf258skq" path="res://GameManager.cs" id="1_2edx7"]
 [ext_resource type="PackedScene" uid="uid://bg62b30f55mj4" path="res://player/spring_character.tscn" id="1_r77ah"]
 [ext_resource type="Script" uid="uid://b2epsu7r2q8ve" path="res://laser/receiver/SimpleReflector.cs" id="2_2edx7"]
 [ext_resource type="Script" uid="uid://bse40f8a65rmj" path="res://laser/receiver/OneSideReflector.cs" id="3_cb1q0"]
 [ext_resource type="PackedScene" uid="uid://dhopd7ju88gr2" path="res://player/camera/camera_holder.tscn" id="4_byoxi"]
 [ext_resource type="Script" uid="uid://b2h3g1ypa4sx0" path="res://laser/LaserLauncher.cs" id="5_jdm2u"]
+[ext_resource type="Script" uid="uid://lyyt8fi8pt8q" path="res://player/camera/CameraScript.cs" id="6_cb1q0"]
 [ext_resource type="Script" uid="uid://doe5ix2j21i5s" path="res://utilities/ObjectPool.cs" id="6_kxqau"]
 [ext_resource type="PackedScene" uid="uid://5mnyk1oarsdd" path="res://laser/simple_laser_beam.tscn" id="7_htuhn"]
 [ext_resource type="Script" uid="uid://cqq3rexaq3p0c" path="res://laser/receiver/lamp/Lamp.cs" id="8_a44y1"]
 [ext_resource type="Texture2D" uid="uid://cn7ongtkf0w1s" path="res://assets/kenney-prototype-textures-db6622fbe90621eed70a0b417ae8d97281f45e6c/addons/kenney_prototype_textures/purple/texture_05.png" id="9_6ym3j"]
+[ext_resource type="Script" uid="uid://dlh1dui7ngqcj" path="res://laser/receiver/PushableObject.cs" id="11_jdm2u"]
+[ext_resource type="Script" uid="uid://cbg3csxnu6so1" path="res://laser/receiver/DestructibleObject.cs" id="12_kxqau"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r77ah"]
 size = Vector3(2.2, 1.382, 0.008)
@@ -28,6 +32,15 @@ transparency = 1
 albedo_color = Color(0.105882354, 0.5176471, 0.10980392, 1)
 emission_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_htuhn"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a44y1"]
+albedo_color = Color(0.50980395, 0.10980392, 0.078431375, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jdm2u"]
+size = Vector3(2, 2, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8ls4"]
 albedo_texture = ExtResource("9_6ym3j")
 uv1_scale = Vector3(25, 25, 25)
@@ -35,7 +48,11 @@ uv1_scale = Vector3(25, 25, 25)
 [sub_resource type="BoxShape3D" id="BoxShape3D_jcsmg"]
 size = Vector3(100, 0.1, 100)
 
-[node name="Tutorial2" type="Node3D" unique_id=1384840419]
+[node name="Tutorial2" type="Node3D" unique_id=1384840419 node_paths=PackedStringArray("_camera", "_lamps", "_looseCondition")]
+script = ExtResource("1_2edx7")
+_camera = NodePath("Character & Camera Stuff/CameraHolder")
+_lamps = [NodePath("Laser & Lamp Stuff/Lamp"), NodePath("Laser & Lamp Stuff/Lamp2")]
+_looseCondition = [NodePath("Laser & Lamp Stuff/Destroy Obstacle")]
 
 [node name="Character & Camera Stuff" type="Node3D" parent="." unique_id=721660096]
 
@@ -62,11 +79,12 @@ size = Vector2i(1126, 666)
 [node name="MirrorCamera" parent="Character & Camera Stuff/MirrorMan/Body Box3D/Mirror/SubViewport" index="0" unique_id=1497034598]
 current = true
 
-[node name="CameraHolder" parent="Character & Camera Stuff" unique_id=851691229 node_paths=PackedStringArray("_target") instance=ExtResource("4_byoxi")]
+[node name="CameraHolder" parent="Character & Camera Stuff" unique_id=851691229 node_paths=PackedStringArray("_playerTarget") instance=ExtResource("4_byoxi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3577204, 5.969884)
 collision_layer = 0
 collision_mask = 0
-_target = NodePath("../MirrorMan")
+script = ExtResource("6_cb1q0")
+_playerTarget = NodePath("../MirrorMan")
 _distance = 1.3
 _followSpeed = 8.0
 _height = 1.65
@@ -96,12 +114,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.76)
 script = ExtResource("6_kxqau")
 _scene = ExtResource("7_htuhn")
 
-[node name="Lamp" type="RigidBody3D" parent="Laser & Lamp Stuff" unique_id=825110907]
+[node name="Lamp" type="RigidBody3D" parent="Laser & Lamp Stuff" unique_id=825110907 node_paths=PackedStringArray("_camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1812944, 1.0614357, -9.672535)
 gravity_scale = 0.0
 freeze = true
 script = ExtResource("8_a44y1")
 _material = SubResource("StandardMaterial3D_j5qwk")
+_camera = NodePath("FocusCamera")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Laser & Lamp Stuff/Lamp" unique_id=1148966484]
 material = SubResource("StandardMaterial3D_j5qwk")
@@ -109,12 +128,16 @@ material = SubResource("StandardMaterial3D_j5qwk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Laser & Lamp Stuff/Lamp" unique_id=559368613]
 shape = SubResource("SphereShape3D_tc1xc")
 
+[node name="FocusCamera" type="Camera3D" parent="Laser & Lamp Stuff/Lamp" unique_id=1423765889]
+transform = Transform3D(0.86871505, -0.30336443, 0.3915408, 0, 0.7904929, 0.6124711, -0.4953122, -0.53206295, 0.68671304, 1.0367846, 1.7807305, 2.083385)
+
 [node name="LaserLauncher2" type="Node3D" parent="Laser & Lamp Stuff" unique_id=771102979 node_paths=PackedStringArray("_laserOrigin", "_laserPointPool")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7578783, 1.2045679, 4.717865)
 script = ExtResource("5_jdm2u")
 _laserOrigin = NodePath("LaserOrigin")
 _maxBounces = 12
 _color = 1
+_isActive = false
 _laserPointPool = NodePath("../LaserPool")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Laser & Lamp Stuff/LaserLauncher2" unique_id=1254909935]
@@ -124,19 +147,50 @@ height = 1.5
 [node name="LaserOrigin" type="Node3D" parent="Laser & Lamp Stuff/LaserLauncher2" unique_id=1321166482]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.76)
 
-[node name="Lamp2" type="RigidBody3D" parent="Laser & Lamp Stuff" unique_id=302081783]
+[node name="Lamp2" type="RigidBody3D" parent="Laser & Lamp Stuff" unique_id=302081783 node_paths=PackedStringArray("_camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1812944, 1.0614357, -13.552692)
 gravity_scale = 0.0
 freeze = true
 script = ExtResource("8_a44y1")
 _material = SubResource("StandardMaterial3D_r77ah")
 _color = 1
+_camera = NodePath("FocusCamera")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Laser & Lamp Stuff/Lamp2" unique_id=998103385]
 material = SubResource("StandardMaterial3D_r77ah")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Laser & Lamp Stuff/Lamp2" unique_id=228197216]
 shape = SubResource("SphereShape3D_tc1xc")
+
+[node name="FocusCamera" type="Camera3D" parent="Laser & Lamp Stuff/Lamp2" unique_id=795982668]
+transform = Transform3D(0.86871505, -0.30336443, 0.3915408, 0, 0.7904929, 0.6124711, -0.4953122, -0.53206295, 0.68671304, 1.0367846, 1.7807305, 2.083385)
+
+[node name="YeetObstacle" type="RigidBody3D" parent="Laser & Lamp Stuff" unique_id=2049895258]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.397503, 2.0108545, -8.667315)
+script = ExtResource("11_jdm2u")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Laser & Lamp Stuff/YeetObstacle" unique_id=286693966]
+size = Vector3(2, 2, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laser & Lamp Stuff/YeetObstacle" unique_id=136274592]
+shape = SubResource("BoxShape3D_htuhn")
+
+[node name="Destroy Obstacle" type="RigidBody3D" parent="Laser & Lamp Stuff" unique_id=2020668768 node_paths=PackedStringArray("_camera", "_visualNode", "_collisionObject")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.066061, 1.7809088, -8.898164)
+script = ExtResource("12_kxqau")
+_camera = NodePath("FocusCamera")
+_visualNode = NodePath("CSGBox3D")
+_collisionObject = NodePath("CollisionShape3D")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Laser & Lamp Stuff/Destroy Obstacle" unique_id=2111239621]
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_a44y1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laser & Lamp Stuff/Destroy Obstacle" unique_id=966780311]
+shape = SubResource("BoxShape3D_jdm2u")
+
+[node name="FocusCamera" type="Camera3D" parent="Laser & Lamp Stuff/Destroy Obstacle" unique_id=1633946297]
+transform = Transform3D(0.86871505, -0.30336443, 0.3915408, 0, 0.7904929, 0.6124711, -0.4953122, -0.53206295, 0.68671304, 1.0367846, 1.7807305, 2.083385)
 
 [node name="Room" type="Node3D" parent="." unique_id=933885971]
 
@@ -214,6 +268,9 @@ shape = SubResource("BoxShape3D_jcsmg")
 [node name="OmniLight3D" type="OmniLight3D" parent="Room" unique_id=783942145]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.609789, -7.662365)
 omni_range = 56.81962
+
+[connection signal="Lit" from="Laser & Lamp Stuff/Lamp" to="Laser & Lamp Stuff/LaserLauncher2" method="Enable"]
+[connection signal="Unlit" from="Laser & Lamp Stuff/Lamp" to="Laser & Lamp Stuff/LaserLauncher2" method="Disable"]
 
 [editable path="Character & Camera Stuff/MirrorMan"]
 [editable path="Character & Camera Stuff/MirrorMan/Body Box3D/Mirror"]

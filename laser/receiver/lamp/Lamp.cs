@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public partial class Lamp : Node3D, ILaserReceiver
+public partial class Lamp : Node3D, ILaserReceiver, ICameraFocusable
 {
     [ExportCategory("Lamp Color Settings")]
     [Export] private StandardMaterial3D _material;
@@ -8,10 +8,16 @@ public partial class Lamp : Node3D, ILaserReceiver
     
     [ExportCategory("Lamp Countdown Settings")]
     [Export] private float _countdownTimeInSeconds = 10.0f;
+    
+    [ExportCategory("Camera Focus Settings")]
+    [Export] private Camera3D _camera;
 
     private StandardMaterial3D _defaultMaterialValue;
     private CountdownTimer _countdownTimer;
     private bool _isActive = false;
+    
+    [Signal] public delegate void LitEventHandler();
+    [Signal] public delegate void UnlitEventHandler();
 
     public bool IsActive => _isActive;
 
@@ -36,6 +42,7 @@ public partial class Lamp : Node3D, ILaserReceiver
         _material.AlbedoColor = _defaultMaterialValue.AlbedoColor;
         _material.Emission = _defaultMaterialValue.Emission;
         _isActive = false;
+        EmitSignal(SignalName.Unlit);
         GD.Print("Unlit!");
     }
 
@@ -43,7 +50,7 @@ public partial class Lamp : Node3D, ILaserReceiver
     {
         if (!Equals(_color, color)) return LaserReceiverType.StopBouncing;
 
-        GD.Print("Lamp received laser hit at " + hitPoint + " with incoming direction " + incomingDirection + " and color " + color);
+        // GD.Print("Lamp received laser hit at " + hitPoint + " with incoming direction " + incomingDirection + " and color " + color);
         // Change color to _color
         _material.AlbedoColor = color switch
         {
@@ -54,10 +61,16 @@ public partial class Lamp : Node3D, ILaserReceiver
         _material.Emission = _material.AlbedoColor * 1.75f;
         
         // Manage Timer
-        GD.Print("Lit!");
+        if (!_isActive) EmitSignal(SignalName.Lit);
+        if (!_isActive) GD.Print("Lit!");
         _countdownTimer.Restart();
         _isActive = true;
 
         return LaserReceiverType.StopBouncing;
+    }
+
+    public Camera3D GetCamera()
+    {
+        return _camera;
     }
 }
