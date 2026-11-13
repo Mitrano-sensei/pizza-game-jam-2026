@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ddsvvk7lb12kx"]
+
+[ext_resource type="PackedScene" uid="uid://c3y8ck78aoiv5" path="res://assets/vampire/vampire.glb" id="1_wey7c"]
+
+[node name="Vampire" type="Node3D" unique_id=724167552]
+
+[node name="vampire" parent="." unique_id=1476845004 instance=ExtResource("1_wey7c")]
+
+[editable path="vampire"]
