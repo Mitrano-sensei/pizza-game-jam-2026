@@ -1,34 +1,59 @@
 [gd_scene format=3 uid="uid://kcwavihn2kbp"]
 
-[ext_resource type="Script" uid="uid://bcmbam1odwxe7" path="res://player/SimplePlayerController.cs" id="1_wrgjt"]
+[ext_resource type="Script" uid="uid://ddt72a28saeab" path="res://player/SpringCharacterController.cs" id="1_0x1i3"]
+[ext_resource type="Script" uid="uid://bse40f8a65rmj" path="res://laser/receiver/OneSideReflector.cs" id="2_0x1i3"]
 [ext_resource type="PackedScene" uid="uid://b04pmwn4hehx1" path="res://player/mirror/mirror.tscn" id="2_vueb6"]
+[ext_resource type="Script" uid="uid://b2epsu7r2q8ve" path="res://laser/receiver/SimpleReflector.cs" id="3_e2r4j"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_31nqk"]
-size = Vector3(1, 1.8, 0.3)
+[sub_resource type="BoxShape3D" id="BoxShape3D_88g12"]
+size = Vector3(2.2, 1.382, 0.008)
 
-[node name="MirrorMan" type="CharacterBody3D" unique_id=1117311011]
-script = ExtResource("1_wrgjt")
+[sub_resource type="BoxShape3D" id="BoxShape3D_mr4ny"]
+size = Vector3(1, 1.4, 0.12)
 
-[node name="Model" type="Node3D" parent="." unique_id=146212495]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qsj4r"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Model" unique_id=1016755760]
+[sub_resource type="QuadMesh" id="QuadMesh_gspry"]
+size = Vector2(2.2, 1.3)
+
+[node name="MirrorMan" type="RigidBody3D" unique_id=370772678 node_paths=PackedStringArray("_bodyCenter")]
+script = ExtResource("1_0x1i3")
+_bodyCenter = NodePath("BodyCenter")
+
+[node name="BodyCenter" type="Node3D" parent="." unique_id=782965475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+
+[node name="MirrorCollider" type="CollisionShape3D" parent="." unique_id=2058175477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5060204, 0.076660156)
+shape = SubResource("BoxShape3D_88g12")
+script = ExtResource("2_0x1i3")
+
+[node name="BodyCollider" type="CollisionShape3D" parent="." unique_id=898393182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_mr4ny")
+script = ExtResource("3_e2r4j")
+
+[node name="Body Box3D" type="CSGBox3D" parent="." unique_id=923139512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 layers = 512
-size = Vector3(1, 1.8, 0.3)
+size = Vector3(2.3, 1.4, 0.12)
+material = SubResource("StandardMaterial3D_qsj4r")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1481568969]
-shape = SubResource("BoxShape3D_31nqk")
+[node name="Mirror" parent="Body Box3D" unique_id=410374777 instance=ExtResource("2_vueb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6146209, 0.068475544)
 
-[node name="PlayerCamera" type="Camera3D" parent="." unique_id=41881592]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09733176, 1.3983111)
+[node name="Surface" parent="Body Box3D/Mirror" index="0" unique_id=1761424297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.621215, 0)
+layers = 512
+mesh = SubResource("QuadMesh_gspry")
 
-[node name="Mirror" parent="." unique_id=410374777 instance=ExtResource("2_vueb6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6873009, 0.20884582)
+[node name="SubViewport" parent="Body Box3D/Mirror" index="1" unique_id=565492617]
+msaa_3d = 1
+size = Vector2i(1126, 666)
 
-[node name="Surface" parent="Mirror" index="0" unique_id=1761424297]
-transform = Transform3D(1, 0, 0, 0, 1.475, 0, 0, 0, 1, 0, 0.735, -0.053111568)
-
-[node name="MirrorCamera" parent="Mirror/SubViewport" parent_id_path=PackedInt32Array(410374777, 565492617) index="0" unique_id=1497034598]
-transform = Transform3D(-0.2108208, 0, -1.8430539e-08, 0, 0.2108208, 0, 1.8430539e-08, 0, -0.2108208, 0, 0.91132736, -0.5)
+[node name="MirrorCamera" parent="Body Box3D/Mirror/SubViewport" index="0" unique_id=1497034598]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.4, -0.5)
 cull_mask = 1048063
+current = true
 
-[editable path="Mirror"]
+[editable path="Body Box3D/Mirror"]

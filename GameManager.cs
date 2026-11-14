@@ -11,12 +11,19 @@ public partial class GameManager : Node
 	
 	[ExportCategory("Settings")]
 	[Export] private float _lampFocusTime = 2f;
+	[Export(PropertyHint.File, "*.tscn")] private string _nextLevel;
 
 	private GameState _currentState = GameState.Playing;
+	private LevelEndMenu _endMenu;
+	private PauseMenu _pauseMenu;
 
 	public override void _Ready()
 	{
 		base._Ready();
+		_endMenu = GD.Load<PackedScene>("res://ui/level-end-menu.tscn").Instantiate<LevelEndMenu>();
+		AddChild(_endMenu);
+		_pauseMenu = GD.Load<PackedScene>("res://ui/pause-menu.tscn").Instantiate<PauseMenu>();
+		AddChild(_pauseMenu);
 	}
 
 	public override void _Process(double delta)
@@ -42,7 +49,7 @@ public partial class GameManager : Node
 				await ToSignal(GetTree().CreateTimer(_lampFocusTime), "timeout");
 			}
 		
-			GD.Print("Win!");
+			_endMenu.Open(true, _nextLevel);
 		}
 		catch (Exception e)
 		{
@@ -60,13 +67,15 @@ public partial class GameManager : Node
 				if (destroyedObject.GetCamera() == null)
 				{
 					GD.PrintErr("Destroyed object has no camera assigned: " + destroyedObject.Name);
-					return;
 				}
-				_camera.SetFocus(destroyedObject);
-				await ToSignal(GetTree().CreateTimer(_lampFocusTime), "timeout");
+				else
+				{
+					_camera.SetFocus(destroyedObject);
+					await ToSignal(GetTree().CreateTimer(_lampFocusTime), "timeout");
+				}
 			}
-		
-			GD.Print("Game Over");
+
+			_endMenu.Open(false);
 		}
 		catch (Exception e)
 		{
@@ -78,6 +87,8 @@ public partial class GameManager : Node
 	private void ChangeState(GameState newState)
 	{
 		_currentState = newState;
+		// No pausing once the level has ended; the end menu takes over.
+		_pauseMenu.ProcessMode = newState == GameState.Playing ? ProcessModeEnum.Always : ProcessModeEnum.Disabled;
 		switch (newState)
 		{
 			case GameState.Intro:

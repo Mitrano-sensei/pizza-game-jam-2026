@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://8ma3jbdcxwhi"]
+
+[resource]
+resource_name = "lamp screw"
+cull_mode = 2
+albedo_color = Color(0.17039509, 0.17039509, 0.17039509, 1)
+metallic = 1.0
+roughness = 0.46363637

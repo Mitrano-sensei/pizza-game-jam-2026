@@ -2,8 +2,23 @@
 
 [ext_resource type="PackedScene" uid="uid://c3y8ck78aoiv5" path="res://assets/vampire/vampire.glb" id="1_wey7c"]
 
-[node name="Vampire" type="Node3D" unique_id=724167552]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wey7c"]
+radius = 1.0517578
+height = 3.113678
 
-[node name="vampire" parent="." unique_id=1476845004 instance=ExtResource("1_wey7c")]
+[node name="Vampire" type="RigidBody3D" unique_id=1568037247]
+gravity_scale = 0.0
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=806384995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.356369, 0)
+shape = SubResource("CapsuleShape3D_wey7c")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=155879227]
+transform = Transform3D(1, 0, 0, 0, 0.9448944, 0.32737532, 0, -0.32737532, 0.9448944, 0, 3.1112309, 4.120727)
+current = true
+
+[node name="vampire" parent="." unique_id=292582481 instance=ExtResource("1_wey7c")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 
 [editable path="vampire"]

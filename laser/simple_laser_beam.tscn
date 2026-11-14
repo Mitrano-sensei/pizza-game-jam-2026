@@ -1,16 +1,15 @@
 [gd_scene format=3 uid="uid://5mnyk1oarsdd"]
 
 [ext_resource type="Script" uid="uid://b7vr2pbvgwab1" path="res://laser/SimpleLaserBeam.cs" id="1_8n5vd"]
+[ext_resource type="Shader" path="res://laser/laser_beam.gdshader" id="2_shd"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31nqk"]
-transparency = 1
-albedo_color = Color(1, 0, 0, 0.6313726)
-emission_enabled = true
-emission = Color(1.753959, 0, 0, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_beam"]
+render_priority = 0
+shader = ExtResource("2_shd")
 
 [node name="SimpleLaserBeam" type="CSGCylinder3D" unique_id=182614158]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0)
 radius = 0.2
 height = 1.5
-material = SubResource("StandardMaterial3D_31nqk")
+material = SubResource("ShaderMaterial_beam")
 script = ExtResource("1_8n5vd")
