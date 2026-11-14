@@ -1,20 +1,14 @@
 [gd_scene format=3 uid="uid://csyx1nav0op4k"]
 
 [ext_resource type="Script" uid="uid://biqbyxf258skq" path="res://GameManager.cs" id="1_pyaib"]
+[ext_resource type="Environment" uid="uid://c4ljys2pi5ufg" path="res://assets/world_environment.tres" id="2_43kx8"]
 [ext_resource type="PackedScene" uid="uid://kcwavihn2kbp" path="res://player/mirror_man.tscn" id="2_ayy1y"]
 [ext_resource type="PackedScene" uid="uid://dhopd7ju88gr2" path="res://player/camera/camera_holder.tscn" id="4_4sh3t"]
 [ext_resource type="Script" uid="uid://b2h3g1ypa4sx0" path="res://laser/LaserLauncher.cs" id="5_qcw4p"]
 [ext_resource type="Script" uid="uid://doe5ix2j21i5s" path="res://utilities/ObjectPool.cs" id="6_ovcl4"]
+[ext_resource type="PackedScene" uid="uid://cjt05k50wprk2" path="res://assets/lamp/lamp.tscn" id="7_ayy1y"]
 [ext_resource type="PackedScene" uid="uid://5mnyk1oarsdd" path="res://laser/simple_laser_beam.tscn" id="7_tnlh7"]
-[ext_resource type="Script" uid="uid://cqq3rexaq3p0c" path="res://laser/receiver/lamp/Lamp.cs" id="8_5wycy"]
 [ext_resource type="Texture2D" uid="uid://cn7ongtkf0w1s" path="res://assets/kenney-prototype-textures-db6622fbe90621eed70a0b417ae8d97281f45e6c/addons/kenney_prototype_textures/purple/texture_05.png" id="9_43kx8"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cjpui"]
-transparency = 1
-albedo_color = Color(0.5058824, 0.11372549, 0.10980392, 1)
-emission_enabled = true
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_7d5l7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4te73"]
 albedo_texture = ExtResource("9_43kx8")
@@ -33,8 +27,11 @@ size = Vector3(100, 0.1, 100)
 [node name="Tutorial1" type="Node3D" unique_id=1118483983 node_paths=PackedStringArray("_camera", "_lamps")]
 script = ExtResource("1_pyaib")
 _camera = NodePath("Character & Camera Stuff/CameraHolder")
-_lamps = [NodePath("Laser & Lamp Stuff/Lamp")]
+_lamps = [NodePath("Laser & Lamp Stuff/Lamp2")]
 _nextLevel = "uid://dfe8d2k71ce86"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=79367906]
+environment = ExtResource("2_43kx8")
 
 [node name="Character & Camera Stuff" type="Node3D" parent="." unique_id=1596390477]
 
@@ -63,22 +60,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.76)
 script = ExtResource("6_ovcl4")
 _scene = ExtResource("7_tnlh7")
 
-[node name="Lamp" type="RigidBody3D" parent="Laser & Lamp Stuff" unique_id=504214050 node_paths=PackedStringArray("_camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1812944, 1.0614357, -9.672535)
-gravity_scale = 0.0
-freeze = true
-script = ExtResource("8_5wycy")
-_material = SubResource("StandardMaterial3D_cjpui")
-_camera = NodePath("Camera3D")
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Laser & Lamp Stuff/Lamp" unique_id=1613010009]
-material = SubResource("StandardMaterial3D_cjpui")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Laser & Lamp Stuff/Lamp" unique_id=360555411]
-shape = SubResource("SphereShape3D_7d5l7")
-
-[node name="Camera3D" type="Camera3D" parent="Laser & Lamp Stuff/Lamp" unique_id=83993420]
-transform = Transform3D(1, 0, 0, 0, 0.76340103, 0.6459248, 0, -0.6459248, 0.76340103, 0, 1.8393373, 1.794209)
+[node name="Lamp2" parent="Laser & Lamp Stuff" unique_id=1700453175 instance=ExtResource("7_ayy1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9339924, 1.4645164, -9.4138565)
 
 [node name="Room" type="Node3D" parent="." unique_id=814368777]
 

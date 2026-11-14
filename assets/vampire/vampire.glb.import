@@ -36,10 +36,48 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-materials/extract=0
+materials/extract=2
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"clothes": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/vampire/clothes.tres",
+"use_external/path": "uid://dt8x34at2v6ew"
+},
+"clothes inside": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/vampire/clothes inside.tres",
+"use_external/path": "uid://cadxrysid567p"
+},
+"eyes": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/vampire/eyes.tres",
+"use_external/path": "uid://2ljtifas1ano"
+},
+"hair": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/vampire/hair.tres",
+"use_external/path": "uid://8iqismb50c6w"
+},
+"mouth": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/vampire/mouth.tres",
+"use_external/path": "uid://drgs7dws7nndt"
+},
+"skin": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/vampire/skin.tres",
+"use_external/path": "uid://crnbyc8to5ij8"
+},
+"teeth": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/vampire/teeth.tres",
+"use_external/path": "uid://bqn7ogd7vmpfk"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
 gltf/texture_map_mode=1
