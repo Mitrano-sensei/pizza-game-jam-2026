@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dhopd7ju88gr2"]
 
 [ext_resource type="Script" uid="uid://lyyt8fi8pt8q" path="res://player/camera/CameraScript.cs" id="1_sr1de"]
+[ext_resource type="Environment" uid="uid://c4ljys2pi5ufg" path="res://assets/world_environment.tres" id="2_cs24s"]
+[ext_resource type="PackedScene" path="res://post_process/outline/outline_post_process.tscn" id="2_puj6a"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_sr1de"]
 
@@ -15,9 +17,11 @@ _height = 1.65
 _xAngle = -5.0
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1425837223]
-transform = Transform3D(1, -1.1175871e-08, 7.450581e-09, 1.1175871e-08, 1, -8.326673e-17, -7.450581e-09, 1.6653345e-16, 1, 0, 0, 0)
+environment = ExtResource("2_cs24s")
 current = true
 fov = 65.0
+
+[node name="OutlinePostProcess" parent="Camera3D" unique_id=1993166074 instance=ExtResource("2_puj6a")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1900068845]
 shape = SubResource("SphereShape3D_sr1de")

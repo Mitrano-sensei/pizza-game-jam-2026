@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bhp1yf2hxymv0"]
+
+[ext_resource type="Script" uid="uid://cbg3csxnu6so1" path="res://laser/receiver/DestructibleObject.cs" id="1_sq50s"]
+[ext_resource type="PackedScene" uid="uid://c3y8ck78aoiv5" path="res://assets/vampire/vampire.glb" id="1_yiu2j"]
+[ext_resource type="PackedScene" uid="uid://bsn4rs80jfgu3" path="res://assets/smoke/3dFireSmoke_v1.0/Scenes/smoke_particle_1.tscn" id="3_2a0fg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_31nqk"]
+radius = 0.78027344
+height = 2.4123077
+
+[sub_resource type="Curve" id="Curve_s2i8u"]
+_data = [Vector2(0, 0), 0.0, 1.96578, 0, 0, Vector2(0.497207, 1), 0.0, 0.0, 0, 0, Vector2(0.99162, 0.0179348), -2.03582, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_d7dga"]
+curve = SubResource("Curve_s2i8u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jx2ks"]
+emission_shape = 1
+emission_sphere_radius = 0.3
+angle_min = -102.899994
+angle_max = 102.90001
+direction = Vector3(1, 1, 0)
+spread = 23.501
+gravity = Vector3(0, 0.1, 0)
+radial_accel_min = -0.050002236
+radial_accel_max = 0.04999776
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_d7dga")
+
+[node name="Vampire" type="RigidBody3D" unique_id=660542962 node_paths=PackedStringArray("_camera", "_visualNodes", "_collisionObject", "_particles3D")]
+gravity_scale = 0.0
+freeze = true
+script = ExtResource("1_sq50s")
+_camera = NodePath("Camera3D")
+_visualNodes = [NodePath("vampire/ears_002"), NodePath("vampire/eyebrows_001"), NodePath("vampire/eyes_001"), NodePath("vampire/hair_001"), NodePath("vampire/hands_001"), NodePath("vampire/head_001"), NodePath("vampire/mouth_001"), NodePath("vampire/teeth_001")]
+_collisionObject = NodePath("CollisionShape3D")
+_particles3D = NodePath("SmokeParticle1")
+
+[node name="vampire" parent="." unique_id=1476845004 instance=ExtResource("1_yiu2j")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1372940072]
+transform = Transform3D(1, 0, 0, 0, 0.9448944, 0.32737532, 0, -0.32737532, 0.9448944, 0, 3.1112309, 4.120727)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=307676094]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0056839, 0)
+shape = SubResource("CapsuleShape3D_31nqk")
+
+[node name="SmokeParticle1" parent="." unique_id=1452022794 instance=ExtResource("3_2a0fg")]
+transform = Transform3D(2.755, 0, 0, 0, 2.755, 0, 0, 0, 2.755, 0, 0.3564396, 0)
+emitting = false
+lifetime = 7.0
+process_material = SubResource("ParticleProcessMaterial_jx2ks")
+
+[editable path="vampire"]

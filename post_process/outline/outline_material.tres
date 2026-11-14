@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://btluuxof4hmk6"]
+
+[ext_resource type="Shader" uid="uid://bld2byhfgjatg" path="res://post_process/outline/outline.gdshader" id="1_shader"]
+
+[resource]
+render_priority = 127
+shader = ExtResource("1_shader")
+shader_parameter/enabled = true
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/thickness = 1.80000001937156
+shader_parameter/depth_threshold = 0.05
+shader_parameter/normal_threshold = 0.7999999821184001
+shader_parameter/fade_start = 30.0
+shader_parameter/fade_end = 80.0
+shader_parameter/use_sobel = false

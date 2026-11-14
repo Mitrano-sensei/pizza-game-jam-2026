@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="pizza-game-jam"
-run/main_scene="uid://csyx1nav0op4k"
+run/main_scene="uid://dfe8d2k71ce86"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,6 +23,10 @@ window/stretch/aspect="expand"
 [dotnet]
 
 project/assembly_name="pizza-game-jam"
+
+[editor]
+
+movie_writer/movie_file="E:/Projects/Godot/pizza-game-jam/movies/test.avi"
 
 [input]
 
@@ -75,3 +79,4 @@ pause={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+viewport/hdr_2d=true
