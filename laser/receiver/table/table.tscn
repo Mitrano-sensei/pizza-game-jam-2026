@@ -1,32 +1,13 @@
 [gd_scene format=3 uid="uid://dbm4v87he2nhb"]
 
+[ext_resource type="Script" uid="uid://dlh1dui7ngqcj" path="res://laser/receiver/PushableObject.cs" id="1_6x6lo"]
 [ext_resource type="PackedScene" uid="uid://dhm2jxgjbwxvs" path="res://assets/table/table.glb" id="1_hyjps"]
-
-[sub_resource type="CSharpScript" id="CSharpScript_hyjps"]
-script/source = "using Godot;
-
-public partial class Table : RigidBody3D
-{
-    public override void _Ready()
-    {
-        // The glb importer (\"generate/physics\") wraps each mesh's shape in its own StaticBody3D.
-        // A RigidBody3D only uses CollisionShape3D direct children, so hoist the shapes onto this body.
-        foreach (var body in FindChildren(\"*\", nameof(StaticBody3D), true, false))
-        {
-            foreach (var child in body.GetChildren())
-                if (child is CollisionShape3D shape)
-                    shape.Reparent(this); // keeps global transform (incl. the 0.76 instance scale)
-            body.Free();
-        }
-    }
-}
-"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2nfpl"]
 size = Vector3(3.270752, 1.342041, 2.40036)
 
 [node name="Table" type="RigidBody3D" unique_id=1750522446]
-script = SubResource("CSharpScript_hyjps")
+script = ExtResource("1_6x6lo")
 
 [node name="table" parent="." unique_id=1091434507 instance=ExtResource("1_hyjps")]
 transform = Transform3D(0.76, 0, 0, 0, 0.76, 0, 0, 0, 0.76, 0, 0, 0)

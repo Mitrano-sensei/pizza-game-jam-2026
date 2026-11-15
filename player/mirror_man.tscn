@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bse40f8a65rmj" path="res://laser/receiver/OneSideReflector.cs" id="2_0x1i3"]
 [ext_resource type="PackedScene" uid="uid://b04pmwn4hehx1" path="res://player/mirror/mirror.tscn" id="2_vueb6"]
 [ext_resource type="Script" uid="uid://b2epsu7r2q8ve" path="res://laser/receiver/SimpleReflector.cs" id="3_e2r4j"]
-[ext_resource type="PackedScene" uid="uid://dp2wy4i8onxpf" path="res://assets/miror/miror.glb" id="4_e2r4j"]
+[ext_resource type="PackedScene" uid="uid://dp2wy4i8onxpf" path="res://assets/mirror/mirror.glb" id="4_e2r4j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_88g12"]
 size = Vector3(2.2, 1.382, 0.008)
@@ -35,19 +35,19 @@ script = ExtResource("3_e2r4j")
 
 [node name="miror" parent="." unique_id=773638563 instance=ExtResource("4_e2r4j")]
 
-[node name="Circle_003" parent="miror" index="7" unique_id=1588828714]
+[node name="Circle_003" parent="miror" index="7" unique_id=432710825]
 transform = Transform3D(0.11182777, 0, 0, 0, 0, -0.069449656, 0, 0.11182777, 0, -0.20119831, 2.389132, 0.054105103)
 
-[node name="Circle_004" parent="miror" index="8" unique_id=1404603525]
+[node name="Circle_004" parent="miror" index="8" unique_id=1905051034]
 transform = Transform3D(0.039315533, 0, 0, 0, 0, -0.024416568, 0, 0.039315533, 0, -0.1480886, 2.389132, 0.06308809)
 
-[node name="Torus_003" parent="miror" index="9" unique_id=1258102476]
+[node name="Torus_003" parent="miror" index="9" unique_id=250415871]
 transform = Transform3D(0.25606358, 0, 0, 0, 0, -0.1114121, 0, 0.25606358, 0, -0.003075689, 2.1715455, 0.15557635)
 
-[node name="Circle_005" parent="miror" index="10" unique_id=1886673137]
+[node name="Circle_005" parent="miror" index="10" unique_id=540081025]
 transform = Transform3D(0.22183926, 0, 0, 0, 0, -0.095292345, 0, 0.15343964, 0, 0.004026383, 2.1706839, 0.1627369)
 
-[node name="Cube_003" parent="miror" index="11" unique_id=1364787575]
+[node name="Cube_003" parent="miror" index="11" unique_id=2058688717]
 transform = Transform3D(0.124631174, 0, 0, 0, 0.041026823, 0, 0, 0, 0.09659832, 0.0040875375, 2.1239133, 0.08890678)
 
 [node name="Mirror" parent="miror" unique_id=410374777 instance=ExtResource("2_vueb6")]
