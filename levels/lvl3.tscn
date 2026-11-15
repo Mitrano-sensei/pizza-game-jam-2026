@@ -48,6 +48,9 @@ _countdownTimeInSeconds = 20.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.579863, 4.6873727, -16.101864)
 _color = 1
 
+[node name="Camera3D" parent="Laser & Lamp Stuff/GreenLamp3" index="2" unique_id=71946925]
+transform = Transform3D(1, 0, 0, 0, 0.8563494, 0.51639694, 0, -0.51639694, 0.8563494, 0, 1.7975955, 1.8601398)
+
 [node name="LaserLauncher" parent="Laser & Lamp Stuff" unique_id=1991011263 node_paths=PackedStringArray("_laserPointPool") instance=ExtResource("9_xrndl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.585495, 1.218228, 7.3984294)
 _color = 0
@@ -140,3 +143,6 @@ transform = Transform3D(1, 0, 0, 0, 0.9396926, -0.34202012, 0, 0.34202012, 0.939
 
 [node name="Floor3" parent="." unique_id=650697721 instance=ExtResource("11_fwyeg")]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 6.749791, 3.4221897, -13.861371)
+
+[editable path="Laser & Lamp Stuff/GreenLamp3"]
+[editable path="Laser & Lamp Stuff/GreenLamp3/lamp"]

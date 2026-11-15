@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="pizza-game-jam"
-run/main_scene="uid://csyx1nav0op4k"
+run/main_scene="uid://djmyny6vh0b2u"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 MusicPlayer="*uid://d1eq8mempvl1k"
+ButtonJuice="*res://ui/ButtonJuice.cs"
 
 [display]
 
@@ -31,6 +32,10 @@ project/assembly_name="pizza-game-jam"
 [editor]
 
 movie_writer/movie_file="E:/Projects/Godot/pizza-game-jam/movies/test.avi"
+
+[gui]
+
+theme/custom="res://ui/theme.tres"
 
 [input]
 
