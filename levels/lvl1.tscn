@@ -44,7 +44,8 @@ _color = 1
 
 [node name="GreenLamp2" parent="Laser & Lamp Stuff" unique_id=503220652 instance=ExtResource("8_fv26v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.811077, 1.6364293, -12.84148)
-_color = 1
+_color = 2
+_countdownTimeInSeconds = 5.0
 
 [node name="LaserLauncher" parent="Laser & Lamp Stuff" unique_id=1991011263 node_paths=PackedStringArray("_laserPointPool") instance=ExtResource("9_422tr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8607683, 4.8243465, 7.7185907)
@@ -53,6 +54,7 @@ _laserPointPool = NodePath("../LaserPool")
 
 [node name="LaserLauncher2" parent="Laser & Lamp Stuff" unique_id=658580801 node_paths=PackedStringArray("_laserPointPool") instance=ExtResource("9_422tr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7834692, 1.7046123, 8.050308)
+_color = 2
 _isActive = true
 _laserPointPool = NodePath("../LaserPool")
 

@@ -20,7 +20,7 @@ script = ExtResource("1_it0hp")
 _camera = NodePath("Character & Camera Stuff/CameraHolder")
 _lamps = [NodePath("Laser & Lamp Stuff/RedLamp1"), NodePath("Laser & Lamp Stuff/GreenLamp3")]
 _looseCondition = [NodePath("Vampire"), NodePath("Vampire3"), NodePath("Vampire2")]
-_nextLevel = "uid://dfe8d2k71ce86"
+_nextLevel = "uid://d123qabf7xgyj"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=79367906]
 environment = ExtResource("2_7653i")

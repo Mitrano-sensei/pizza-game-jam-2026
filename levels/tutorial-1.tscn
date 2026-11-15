@@ -46,6 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9339924, 1.4645164, -6.192
 
 [node name="LaserLauncher2" parent="Laser & Lamp Stuff" unique_id=1991011263 node_paths=PackedStringArray("_laserPointPool") instance=ExtResource("8_4sh3t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2890458, 1.513054, 8.019073)
+_color = 0
 _isActive = true
 _laserPointPool = NodePath("../LaserPool")
 

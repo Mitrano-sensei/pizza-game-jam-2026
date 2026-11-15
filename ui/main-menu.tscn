@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://w17pjl4voq2o" path="res://levels/lvl1.tscn" id="3_lpta4"]
 [ext_resource type="PackedScene" uid="uid://dmvor4qgqgsem" path="res://levels/lvl2.tscn" id="4_tmj1g"]
 [ext_resource type="PackedScene" uid="uid://cyvfthusisfo8" path="res://levels/lvl3.tscn" id="5_63poq"]
-[ext_resource type="PackedScene" uid="uid://dfe8d2k71ce86" path="res://levels/test.tscn" id="5_tmj1g"]
+[ext_resource type="PackedScene" uid="uid://d123qabf7xgyj" path="res://levels/lvl4.tscn" id="6_63poq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tuto"]
 content_margin_left = 12.0
@@ -30,7 +30,7 @@ _playButton = NodePath("Buttons/PlayButton")
 _quitButton = NodePath("Buttons/QuitButton")
 _levelPanel = NodePath("LevelPanel")
 _levelList = NodePath("LevelPanel/Margin/VBox/LevelList")
-_levels = Array[PackedScene]([ExtResource("2_lvl0"), ExtResource("3_lpta4"), ExtResource("4_tmj1g"), ExtResource("5_63poq"), ExtResource("5_tmj1g")])
+_levels = Array[PackedScene]([ExtResource("2_lvl0"), ExtResource("3_lpta4"), ExtResource("4_tmj1g"), ExtResource("5_63poq"), ExtResource("6_63poq")])
 
 [node name="Buttons" type="VBoxContainer" parent="." unique_id=946791172]
 layout_mode = 1
