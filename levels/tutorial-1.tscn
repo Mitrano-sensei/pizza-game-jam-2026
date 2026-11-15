@@ -8,18 +8,12 @@
 [ext_resource type="Script" uid="uid://doe5ix2j21i5s" path="res://utilities/ObjectPool.cs" id="6_ovcl4"]
 [ext_resource type="PackedScene" uid="uid://cjt05k50wprk2" path="res://assets/lamp/lamp.tscn" id="7_ayy1y"]
 [ext_resource type="PackedScene" uid="uid://5mnyk1oarsdd" path="res://laser/simple_laser_beam.tscn" id="7_tnlh7"]
-[ext_resource type="Texture2D" uid="uid://cn7ongtkf0w1s" path="res://assets/kenney-prototype-textures-db6622fbe90621eed70a0b417ae8d97281f45e6c/addons/kenney_prototype_textures/purple/texture_05.png" id="9_43kx8"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4te73"]
-albedo_texture = ExtResource("9_43kx8")
-uv1_scale = Vector3(25, 25, 25)
+[ext_resource type="PackedScene" uid="uid://dgh0tbl37wi7i" path="res://modular/floor.tscn" id="10_pyaib"]
+[ext_resource type="PackedScene" uid="uid://dgkv30u0eckr1" path="res://modular/wall.tscn" id="11_4sh3t"]
+[ext_resource type="PackedScene" uid="uid://cu7s33eyqmq6i" path="res://modular/ceiling.tscn" id="12_qcw4p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_31nqk"]
 size = Vector3(100, 0.1, 100)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43kx8"]
-albedo_texture = ExtResource("9_43kx8")
-uv1_scale = Vector3(25, 25, 25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pyaib"]
 size = Vector3(100, 0.1, 100)
@@ -36,6 +30,7 @@ environment = ExtResource("2_43kx8")
 [node name="Character & Camera Stuff" type="Node3D" parent="." unique_id=1596390477]
 
 [node name="MirrorMan" parent="Character & Camera Stuff" unique_id=370772678 instance=ExtResource("2_ayy1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.9046361)
 
 [node name="CameraHolder" parent="Character & Camera Stuff" unique_id=851691229 node_paths=PackedStringArray("_playerTarget") instance=ExtResource("4_4sh3t")]
 _playerTarget = NodePath("../MirrorMan")
@@ -43,7 +38,7 @@ _playerTarget = NodePath("../MirrorMan")
 [node name="Laser & Lamp Stuff" type="Node3D" parent="." unique_id=1532316960]
 
 [node name="LaserLauncher" type="Node3D" parent="Laser & Lamp Stuff" unique_id=987986219 node_paths=PackedStringArray("_laserOrigin", "_laserPointPool")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9426413, 1.2045679, 4.717865)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.189112, 1.2045679, 4.717865)
 script = ExtResource("5_qcw4p")
 _laserOrigin = NodePath("LaserOrigin")
 _maxBounces = 12
@@ -61,17 +56,13 @@ script = ExtResource("6_ovcl4")
 _scene = ExtResource("7_tnlh7")
 
 [node name="Lamp2" parent="Laser & Lamp Stuff" unique_id=1700453175 instance=ExtResource("7_ayy1y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9339924, 1.4645164, -9.4138565)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9339924, 1.4645164, -6.192152)
 
 [node name="Room" type="Node3D" parent="." unique_id=814368777]
 
 [node name="Floor" type="RigidBody3D" parent="Room" unique_id=2139277736]
 gravity_scale = 0.0
 freeze = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Room/Floor" unique_id=1673537926]
-size = Vector3(100, 0.1, 100)
-material = SubResource("StandardMaterial3D_4te73")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor" unique_id=967190321]
 shape = SubResource("BoxShape3D_31nqk")
@@ -81,10 +72,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40.448082, 0)
 gravity_scale = 0.0
 freeze = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Room/Floor2" unique_id=1505832741]
-size = Vector3(100, 0.1, 100)
-material = SubResource("StandardMaterial3D_43kx8")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor2" unique_id=804514117]
 shape = SubResource("BoxShape3D_pyaib")
 
@@ -92,10 +79,6 @@ shape = SubResource("BoxShape3D_pyaib")
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -10.065143, 0, 0)
 gravity_scale = 0.0
 freeze = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Room/Wall" unique_id=1679300214]
-size = Vector3(100, 0.1, 100)
-material = SubResource("StandardMaterial3D_4te73")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Wall" unique_id=1446472027]
 shape = SubResource("BoxShape3D_31nqk")
@@ -105,10 +88,6 @@ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.15
 gravity_scale = 0.0
 freeze = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Room/Wall2" unique_id=35344859]
-size = Vector3(100, 0.1, 100)
-material = SubResource("StandardMaterial3D_4te73")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Wall2" unique_id=718001100]
 shape = SubResource("BoxShape3D_31nqk")
 
@@ -116,10 +95,6 @@ shape = SubResource("BoxShape3D_31nqk")
 transform = Transform3D(1.9106855e-15, 4.3711385e-08, 0.99999994, 1, -4.3711385e-08, 0, 4.371139e-08, 0.99999994, -4.3711385e-08, -2.0836232, 0, -22.33323)
 gravity_scale = 0.0
 freeze = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Room/Wall3" unique_id=787307383]
-size = Vector3(100, 0.1, 100)
-material = SubResource("StandardMaterial3D_4te73")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Wall3" unique_id=649379050]
 shape = SubResource("BoxShape3D_31nqk")
@@ -129,14 +104,33 @@ transform = Transform3D(1.9106855e-15, 4.3711385e-08, 0.99999994, 1, -4.3711385e
 gravity_scale = 0.0
 freeze = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Room/Wall4" unique_id=845846862]
-transform = Transform3D(1, -2.1671553e-13, 1.6517142e-20, 0, 0.99999505, 7.81597e-14, 0, -7.81597e-14, 0.99999505, 0, 0, 0)
-size = Vector3(100, 0.1, 100)
-material = SubResource("StandardMaterial3D_4te73")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Wall4" unique_id=111869540]
 shape = SubResource("BoxShape3D_31nqk")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Room" unique_id=269852692]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.609789, -7.662365)
 omni_range = 56.81962
+
+[node name="Floor" parent="." unique_id=1730644408 instance=ExtResource("10_pyaib")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1817732, 0.10000019, -0.781188)
+
+[node name="Wall5" parent="." unique_id=1038239716 instance=ExtResource("11_4sh3t")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -8.288829, 5.501564, 3.371585)
+
+[node name="Wall6" parent="." unique_id=1550024289 instance=ExtResource("11_4sh3t")]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 1.5712681, 5.501564, 3.371585)
+
+[node name="Wall7" parent="." unique_id=954289160 instance=ExtResource("11_4sh3t")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -3.4011486, 5.501564, 8.14413)
+
+[node name="Wall8" parent="." unique_id=2139269497 instance=ExtResource("11_4sh3t")]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 1.597367, 5.501564, -6.6697793)
+
+[node name="Wall10" parent="." unique_id=1789576137 instance=ExtResource("11_4sh3t")]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, -8.241911, 5.501564, -6.5986)
+
+[node name="Wall9" parent="." unique_id=274620063 instance=ExtResource("11_4sh3t")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -3.4011486, 5.501564, -11.778329)
+
+[node name="Ceiling" parent="." unique_id=493650977 instance=ExtResource("12_qcw4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6482086, 10.520027, -1.5812416)

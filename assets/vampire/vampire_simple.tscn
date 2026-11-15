@@ -78,5 +78,6 @@ lifetime = 7.0
 process_material = SubResource("ParticleProcessMaterial_jx2ks")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=281454096]
+volume_db = 10.0
 
 [editable path="vampire"]

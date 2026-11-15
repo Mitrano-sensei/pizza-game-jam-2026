@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cu7s33eyqmq6i"]
+
+[ext_resource type="Texture2D" uid="uid://cx4gi5edxptnp" path="res://assets/walls/stonework-wall-bl/stonework-wall-albedo.png" id="1_8h7jv"]
+[ext_resource type="Texture2D" uid="uid://dy83vcxib3dfe" path="res://assets/walls/stonework-wall-bl/stonework-wall-ao.png" id="2_ixaou"]
+[ext_resource type="Texture2D" uid="uid://dv6erffsmgbli" path="res://assets/walls/stonework-wall-bl/stonework-wall-height.png" id="3_dxqmv"]
+[ext_resource type="Texture2D" uid="uid://cwbpaoap582af" path="res://assets/walls/stonework-wall-bl/stonework-wall-metallic.png" id="4_mm5yu"]
+[ext_resource type="Texture2D" uid="uid://hy6q5acuw2x6" path="res://assets/walls/stonework-wall-bl/stonework-wall-normal-ogl.png" id="5_88ifn"]
+[ext_resource type="Texture2D" uid="uid://cm2aroecng326" path="res://assets/walls/stonework-wall-bl/stonework-wall-roughness.png" id="6_bbmbw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g5f6e"]
+albedo_texture = ExtResource("1_8h7jv")
+metallic = 1.0
+metallic_texture = ExtResource("4_mm5yu")
+roughness_texture = ExtResource("6_bbmbw")
+normal_enabled = true
+normal_texture = ExtResource("5_88ifn")
+ao_enabled = true
+ao_texture = ExtResource("2_ixaou")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_dxqmv")
+uv1_scale = Vector3(9.355, 9.355, 9.355)
+
+[node name="Ceiling" type="Node3D" unique_id=493650977]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=162614060]
+size = Vector3(50, 0.1, 50)
+material = SubResource("StandardMaterial3D_g5f6e")
