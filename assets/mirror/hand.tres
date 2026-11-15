@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ccvgk2e51p3g8"]
+
+[resource]
+resource_name = "hand"
+cull_mode = 2
+roughness = 0.7

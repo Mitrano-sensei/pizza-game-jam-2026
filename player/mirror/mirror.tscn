@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b04pmwn4hehx1"]
+
+[ext_resource type="Script" uid="uid://c078m3suftp0a" path="res://player/mirror/Mirror.cs" id="1_3fsuh"]
+[ext_resource type="Shader" uid="uid://kijtuaegc4b3" path="res://player/mirror/mirror.gdshader" id="2_450ej"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_11sud"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5s68n"]
+render_priority = 0
+shader = ExtResource("2_450ej")
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[node name="Mirror" type="Node3D" unique_id=410374777 node_paths=PackedStringArray("Surface", "ReflectionViewport", "ReflectionCamera")]
+script = ExtResource("1_3fsuh")
+Surface = NodePath("Surface")
+ReflectionViewport = NodePath("SubViewport")
+ReflectionCamera = NodePath("SubViewport/MirrorCamera")
+
+[node name="Surface" type="MeshInstance3D" parent="." unique_id=1761424297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7349552, 0)
+mesh = SubResource("QuadMesh_11sud")
+surface_material_override/0 = SubResource("ShaderMaterial_5s68n")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=565492617]
+render_target_update_mode = 4
+
+[node name="MirrorCamera" type="Camera3D" parent="SubViewport" unique_id=1497034598]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.91132736, -0.5)

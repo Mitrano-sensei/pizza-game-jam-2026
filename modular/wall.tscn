@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dgkv30u0eckr1"]
+
+[ext_resource type="Texture2D" uid="uid://cx4gi5edxptnp" path="res://assets/walls/stonework-wall-bl/stonework-wall-albedo.png" id="1_hxcdm"]
+[ext_resource type="Texture2D" uid="uid://dy83vcxib3dfe" path="res://assets/walls/stonework-wall-bl/stonework-wall-ao.png" id="2_cv3hk"]
+[ext_resource type="Texture2D" uid="uid://dv6erffsmgbli" path="res://assets/walls/stonework-wall-bl/stonework-wall-height.png" id="3_jmi8t"]
+[ext_resource type="Texture2D" uid="uid://cwbpaoap582af" path="res://assets/walls/stonework-wall-bl/stonework-wall-metallic.png" id="4_qh2lo"]
+[ext_resource type="Texture2D" uid="uid://hy6q5acuw2x6" path="res://assets/walls/stonework-wall-bl/stonework-wall-normal-ogl.png" id="5_0rlj8"]
+[ext_resource type="Texture2D" uid="uid://cm2aroecng326" path="res://assets/walls/stonework-wall-bl/stonework-wall-roughness.png" id="6_hk3mp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g5f6e"]
+albedo_texture = ExtResource("1_hxcdm")
+metallic = 1.0
+metallic_texture = ExtResource("4_qh2lo")
+roughness_texture = ExtResource("6_hk3mp")
+normal_enabled = true
+normal_texture = ExtResource("5_0rlj8")
+ao_enabled = true
+ao_texture = ExtResource("2_cv3hk")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_jmi8t")
+uv1_scale = Vector3(9.355, 9.355, 9.355)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31nqk"]
+size = Vector3(10, 0.2, 10)
+
+[node name="Wall5" type="RigidBody3D" unique_id=1038239716]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+gravity_scale = 0.0
+freeze = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=162614060]
+size = Vector3(10, 0.1, 10)
+material = SubResource("StandardMaterial3D_g5f6e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1389962165]
+shape = SubResource("BoxShape3D_31nqk")

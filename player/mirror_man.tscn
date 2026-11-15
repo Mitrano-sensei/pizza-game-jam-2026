@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://kcwavihn2kbp"]
+
+[ext_resource type="Script" uid="uid://ddt72a28saeab" path="res://player/SpringCharacterController.cs" id="1_0x1i3"]
+[ext_resource type="Script" uid="uid://bse40f8a65rmj" path="res://laser/receiver/OneSideReflector.cs" id="2_0x1i3"]
+[ext_resource type="PackedScene" uid="uid://b04pmwn4hehx1" path="res://player/mirror/mirror.tscn" id="2_vueb6"]
+[ext_resource type="Script" uid="uid://b2epsu7r2q8ve" path="res://laser/receiver/SimpleReflector.cs" id="3_e2r4j"]
+[ext_resource type="PackedScene" uid="uid://dp2wy4i8onxpf" path="res://assets/mirror/mirror.glb" id="4_e2r4j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_88g12"]
+size = Vector3(2.2, 1.382, 0.008)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mr4ny"]
+size = Vector3(1, 1.4, 0.12)
+
+[sub_resource type="QuadMesh" id="QuadMesh_gspry"]
+size = Vector2(2.2, 1.3)
+
+[node name="MirrorMan" type="RigidBody3D" unique_id=370772678 node_paths=PackedStringArray("_bodyCenter")]
+script = ExtResource("1_0x1i3")
+_bodyCenter = NodePath("BodyCenter")
+_isDirectionToggle = false
+
+[node name="BodyCenter" type="Node3D" parent="." unique_id=782965475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2710246, 0)
+
+[node name="MirrorCollider" type="CollisionShape3D" parent="." unique_id=2058175477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5060204, 0.076660156)
+shape = SubResource("BoxShape3D_88g12")
+script = ExtResource("2_0x1i3")
+
+[node name="BodyCollider" type="CollisionShape3D" parent="." unique_id=898393182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_mr4ny")
+script = ExtResource("3_e2r4j")
+
+[node name="miror" parent="." unique_id=773638563 instance=ExtResource("4_e2r4j")]
+
+[node name="Circle_003" parent="miror" index="7" unique_id=432710825]
+transform = Transform3D(0.11182777, 0, 0, 0, 0, -0.069449656, 0, 0.11182777, 0, -0.20119831, 2.389132, 0.054105103)
+
+[node name="Circle_004" parent="miror" index="8" unique_id=1905051034]
+transform = Transform3D(0.039315533, 0, 0, 0, 0, -0.024416568, 0, 0.039315533, 0, -0.1480886, 2.389132, 0.06308809)
+
+[node name="Torus_003" parent="miror" index="9" unique_id=250415871]
+transform = Transform3D(0.25606358, 0, 0, 0, 0, -0.1114121, 0, 0.25606358, 0, -0.003075689, 2.1715455, 0.15557635)
+
+[node name="Circle_005" parent="miror" index="10" unique_id=540081025]
+transform = Transform3D(0.22183926, 0, 0, 0, 0, -0.095292345, 0, 0.15343964, 0, 0.004026383, 2.1706839, 0.1627369)
+
+[node name="Cube_003" parent="miror" index="11" unique_id=2058688717]
+transform = Transform3D(0.124631174, 0, 0, 0, 0.041026823, 0, 0, 0, 0.09659832, 0.0040875375, 2.1239133, 0.08890678)
+
+[node name="Mirror" parent="miror" unique_id=410374777 instance=ExtResource("2_vueb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7564037, 0.068475544)
+
+[node name="Surface" parent="miror/Mirror" index="0" unique_id=1761424297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.621215, 0.024471462)
+layers = 512
+mesh = SubResource("QuadMesh_gspry")
+
+[node name="SubViewport" parent="miror/Mirror" index="1" unique_id=565492617]
+msaa_3d = 1
+size = Vector2i(1126, 666)
+
+[node name="MirrorCamera" parent="miror/Mirror/SubViewport" index="0" unique_id=1497034598]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.4, -0.5)
+cull_mask = 1048063
+current = true
+
+[editable path="miror"]
+[editable path="miror/Mirror"]

@@ -1,0 +1,192 @@
+[gd_scene format=3 uid="uid://dfe8d2k71ce86"]
+
+[ext_resource type="Script" uid="uid://biqbyxf258skq" path="res://GameManager.cs" id="1_2edx7"]
+[ext_resource type="PackedScene" uid="uid://kcwavihn2kbp" path="res://player/mirror_man.tscn" id="2_2edx7"]
+[ext_resource type="PackedScene" uid="uid://dhopd7ju88gr2" path="res://player/camera/camera_holder.tscn" id="4_byoxi"]
+[ext_resource type="PackedScene" uid="uid://dicmch2gei53l" path="res://laser/laser_launcher.tscn" id="6_eudka"]
+[ext_resource type="Script" uid="uid://doe5ix2j21i5s" path="res://utilities/ObjectPool.cs" id="6_kxqau"]
+[ext_resource type="PackedScene" uid="uid://5mnyk1oarsdd" path="res://laser/simple_laser_beam.tscn" id="7_htuhn"]
+[ext_resource type="PackedScene" uid="uid://cjt05k50wprk2" path="res://assets/lamp/lamp.tscn" id="9_2edx7"]
+[ext_resource type="Texture2D" uid="uid://cn7ongtkf0w1s" path="res://assets/kenney-prototype-textures-db6622fbe90621eed70a0b417ae8d97281f45e6c/addons/kenney_prototype_textures/purple/texture_05.png" id="9_6ym3j"]
+[ext_resource type="PackedScene" uid="uid://bhp1yf2hxymv0" path="res://assets/vampire/vampire_simple.tscn" id="9_cb1q0"]
+[ext_resource type="Script" uid="uid://cbiq2vsu8pgrh" path="res://utilities/PropsMover.cs" id="10_cb1q0"]
+[ext_resource type="Script" uid="uid://dlh1dui7ngqcj" path="res://laser/receiver/PushableObject.cs" id="11_jdm2u"]
+
+[sub_resource type="Environment" id="Environment_qtvpr"]
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.15
+glow_strength = 1.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_drwxn"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="Curve3D" id="Curve3D_rmkky"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.4361987, 0, -3.541845),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epu3l"]
+albedo_texture = ExtResource("9_6ym3j")
+uv1_scale = Vector3(25, 25, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lqn8c"]
+size = Vector3(100, 0.1, 100)
+
+[node name="Tutorial2" type="Node3D" unique_id=1384840419 node_paths=PackedStringArray("_camera", "_lamps", "_looseCondition")]
+script = ExtResource("1_2edx7")
+_camera = NodePath("Character & Camera Stuff/CameraHolder")
+_lamps = [NodePath("Laser & Lamp Stuff/Lamp"), NodePath("Laser & Lamp Stuff/Lamp2")]
+_looseCondition = [NodePath("Laser & Lamp Stuff/Vampire")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=783942145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.609789, -7.662365)
+omni_range = 56.81962
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=388373791]
+environment = SubResource("Environment_qtvpr")
+
+[node name="Character & Camera Stuff" type="Node3D" parent="." unique_id=1354903007]
+
+[node name="MirrorMan" parent="Character & Camera Stuff" unique_id=370772678 instance=ExtResource("2_2edx7")]
+
+[node name="CameraHolder" parent="Character & Camera Stuff" unique_id=851691229 node_paths=PackedStringArray("_playerTarget") instance=ExtResource("4_byoxi")]
+_playerTarget = NodePath("../MirrorMan")
+
+[node name="Laser & Lamp Stuff" type="Node3D" parent="." unique_id=678412187]
+
+[node name="LaserPool" type="Node3D" parent="Laser & Lamp Stuff" unique_id=1831472360]
+script = ExtResource("6_kxqau")
+_scene = ExtResource("7_htuhn")
+
+[node name="LaserLauncher" parent="Laser & Lamp Stuff" unique_id=1991011263 node_paths=PackedStringArray("_laserPointPool") instance=ExtResource("6_eudka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7578783, 1.4256417, 8.04932)
+_laserPointPool = NodePath("../LaserPool")
+
+[node name="LaserLauncher2" parent="Laser & Lamp Stuff" unique_id=1020608091 node_paths=PackedStringArray("_laserPointPool") instance=ExtResource("6_eudka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8366883, 1.4256417, 8.04932)
+_color = 0
+_isActive = true
+_laserPointPool = NodePath("../LaserPool")
+
+[node name="YeetObstacle" type="RigidBody3D" parent="Laser & Lamp Stuff" unique_id=1171338488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.397503, 2.0108545, -8.667315)
+script = ExtResource("11_jdm2u")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Laser & Lamp Stuff/YeetObstacle" unique_id=1624041711]
+size = Vector3(2, 2, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laser & Lamp Stuff/YeetObstacle" unique_id=579267243]
+shape = SubResource("BoxShape3D_drwxn")
+
+[node name="Lamp" parent="Laser & Lamp Stuff" unique_id=1700453175 instance=ExtResource("9_2edx7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7261105, 1.4645164, -7.507705)
+
+[node name="Lamp2" parent="Laser & Lamp Stuff" unique_id=2080704530 instance=ExtResource("9_2edx7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7261105, 1.4645164, -12.862835)
+_color = 1
+
+[node name="Vampire" parent="Laser & Lamp Stuff" unique_id=660542962 instance=ExtResource("9_cb1q0")]
+transform = Transform3D(0.35358053, 0, 0.93540406, 0, 1, 0, -0.93540406, 0, 0.35358053, -5.9725046, 0.50093746, -2.1709588)
+
+[node name="Path3D" type="Path3D" parent="Laser & Lamp Stuff" unique_id=1774950286 node_paths=PackedStringArray("_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1583395, 0.14895582, 0)
+curve = SubResource("Curve3D_rmkky")
+script = ExtResource("10_cb1q0")
+_target = NodePath("../Vampire")
+_speed = 1.0
+
+[node name="Room" type="Node3D" parent="." unique_id=646631411]
+
+[node name="Wall2" type="RigidBody3D" parent="Room" unique_id=523029133]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.1503706, 0, 0)
+gravity_scale = 0.0
+freeze = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Wall2" unique_id=1593844765]
+size = Vector3(100, 0.1, 100)
+material = SubResource("StandardMaterial3D_epu3l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Wall2" unique_id=1747192068]
+shape = SubResource("BoxShape3D_lqn8c")
+
+[node name="Wall" type="RigidBody3D" parent="Room" unique_id=777362506]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -10.065143, 0, 0)
+gravity_scale = 0.0
+freeze = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Wall" unique_id=1342437449]
+size = Vector3(100, 0.1, 100)
+material = SubResource("StandardMaterial3D_epu3l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Wall" unique_id=1825036262]
+shape = SubResource("BoxShape3D_lqn8c")
+
+[node name="Floor" type="RigidBody3D" parent="Room" unique_id=802611477]
+gravity_scale = 0.0
+freeze = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Floor" unique_id=942620829]
+size = Vector3(100, 0.1, 100)
+material = SubResource("StandardMaterial3D_epu3l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor" unique_id=1713638640]
+shape = SubResource("BoxShape3D_lqn8c")
+
+[node name="Floor3" type="RigidBody3D" parent="Room" unique_id=1934964727]
+transform = Transform3D(1, 0, 0, 0, 0.9672741, -0.25373375, 0, 0.25373375, 0.9672741, 0, 0.9492605, -17.911306)
+gravity_scale = 0.0
+freeze = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Floor3" unique_id=1466022153]
+size = Vector3(100, 0.1, 100)
+material = SubResource("StandardMaterial3D_epu3l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor3" unique_id=1449575614]
+shape = SubResource("BoxShape3D_lqn8c")
+
+[node name="Floor2" type="RigidBody3D" parent="Room" unique_id=1689541755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40.448082, 0)
+gravity_scale = 0.0
+freeze = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Floor2" unique_id=1297095042]
+size = Vector3(100, 0.1, 100)
+material = SubResource("StandardMaterial3D_epu3l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor2" unique_id=1309982060]
+shape = SubResource("BoxShape3D_lqn8c")
+
+[node name="Wall3" type="RigidBody3D" parent="Room" unique_id=919902977]
+transform = Transform3D(1.9106855e-15, 4.3711385e-08, 0.99999994, 1, -4.3711385e-08, 0, 4.371139e-08, 0.99999994, -4.3711385e-08, -2.0836232, 0, -22.33323)
+gravity_scale = 0.0
+freeze = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Wall3" unique_id=919710015]
+size = Vector3(100, 0.1, 100)
+material = SubResource("StandardMaterial3D_epu3l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Wall3" unique_id=2133326563]
+shape = SubResource("BoxShape3D_lqn8c")
+
+[node name="Wall4" type="RigidBody3D" parent="Room" unique_id=863624592]
+transform = Transform3D(1.9106855e-15, 4.3711385e-08, 0.99999994, 1, -4.3711385e-08, 0, 4.371139e-08, 0.99999994, -4.3711385e-08, -1.8311487, 0, 8.106773)
+gravity_scale = 0.0
+freeze = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Wall4" unique_id=1550044410]
+size = Vector3(100, 0.1, 100)
+material = SubResource("StandardMaterial3D_epu3l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Wall4" unique_id=492047883]
+shape = SubResource("BoxShape3D_lqn8c")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Room" unique_id=1386621250]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.609789, -7.662365)
+omni_range = 56.81962
+
+[connection signal="Lit" from="Laser & Lamp Stuff/Lamp" to="Laser & Lamp Stuff/LaserLauncher" method="Enable"]
+[connection signal="Unlit" from="Laser & Lamp Stuff/Lamp" to="Laser & Lamp Stuff/LaserLauncher" method="Disable"]

@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b3sej8hbw7sjx"]
+
+[resource]
+resource_name = "eyeball"
+cull_mode = 2
+roughness = 0.5

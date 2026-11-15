@@ -1,0 +1,83 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://c3y8ck78aoiv5"
+path="res://.godot/imported/vampire.glb-4953433a074756450a8a055820246b7b.scn"
+
+[deps]
+
+source_file="res://assets/vampire/vampire.glb"
+dest_files=["res://.godot/imported/vampire.glb-4953433a074756450a8a055820246b7b.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=2
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"clothes": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/vampire/clothes.tres",
+"use_external/path": "uid://dt8x34at2v6ew"
+},
+"clothes inside": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/vampire/clothes inside.tres",
+"use_external/path": "uid://cadxrysid567p"
+},
+"eyes": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/vampire/eyes.tres",
+"use_external/path": "uid://2ljtifas1ano"
+},
+"hair": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/vampire/hair.tres",
+"use_external/path": "uid://8iqismb50c6w"
+},
+"mouth": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/vampire/mouth.tres",
+"use_external/path": "uid://drgs7dws7nndt"
+},
+"skin": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/vampire/skin.tres",
+"use_external/path": "uid://crnbyc8to5ij8"
+},
+"teeth": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/vampire/teeth.tres",
+"use_external/path": "uid://bqn7ogd7vmpfk"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=1

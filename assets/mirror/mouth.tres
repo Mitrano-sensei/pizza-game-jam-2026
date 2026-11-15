@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://doetoxtokuhqv"]
+
+[resource]
+resource_name = "mouth"
+cull_mode = 2
+albedo_color = Color(0.8392817, 0.39992195, 0.68399477, 1)
+roughness = 0.5
