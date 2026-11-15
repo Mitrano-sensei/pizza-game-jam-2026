@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dfe8d2k71ce86" path="res://levels/test.tscn" id="3_lvl1"]
 [ext_resource type="PackedScene" uid="uid://w17pjl4voq2o" path="res://levels/lvl1.tscn" id="3_of3uj"]
 [ext_resource type="PackedScene" uid="uid://dmvor4qgqgsem" path="res://levels/lvl2.tscn" id="4_dkhyu"]
+[ext_resource type="PackedScene" uid="uid://cyvfthusisfo8" path="res://levels/lvl3.tscn" id="5_dkhyu"]
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=2059841664 node_paths=PackedStringArray("_resumeButton", "_resetButton", "_levelSelectButton", "_mainMenuButton", "_quitButton", "_levelPanel", "_levelList", "_volumeSlider")]
 layer = 2
@@ -17,7 +18,7 @@ _quitButton = NodePath("Center/Panel/Margin/VBox/QuitButton")
 _levelPanel = NodePath("LevelPanel")
 _levelList = NodePath("LevelPanel/Margin/VBox/LevelList")
 _volumeSlider = NodePath("Center/Panel/Margin/VBox/VolumeSlider")
-_levels = Array[PackedScene]([ExtResource("2_lvl0"), ExtResource("3_of3uj"), ExtResource("4_dkhyu"), ExtResource("3_lvl1")])
+_levels = Array[PackedScene]([ExtResource("2_lvl0"), ExtResource("3_of3uj"), ExtResource("4_dkhyu"), ExtResource("5_dkhyu"), ExtResource("3_lvl1")])
 
 [node name="Dim" type="ColorRect" parent="." unique_id=1632985695]
 anchors_preset = 15

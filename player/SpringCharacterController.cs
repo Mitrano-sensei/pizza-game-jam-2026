@@ -88,7 +88,7 @@ public partial class SpringCharacterController : RigidBody3D
             _currentLookAtMode = (LookAtMode)((int)LookAtMode.None + held);
             return;
         }
-        
+
         int direction = 0;
         if (Input.IsActionJustPressed(_lookRightInput)) direction++;
         if (Input.IsActionJustPressed(_lookLeftInput)) direction--;
