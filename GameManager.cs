@@ -21,8 +21,8 @@ public partial class GameManager : Node
 	{
 		base._Ready();
 		_endMenu = GD.Load<PackedScene>("res://ui/level-end-menu.tscn").Instantiate<LevelEndMenu>();
-		AddChild(_endMenu);
 		_pauseMenu = GD.Load<PackedScene>("res://ui/pause-menu.tscn").Instantiate<PauseMenu>();
+		AddChild(_endMenu);
 		AddChild(_pauseMenu);
 	}
 
@@ -96,13 +96,23 @@ public partial class GameManager : Node
 			case GameState.Playing:
 				break;
 			case GameState.Win:
+				FreezeLamps();
 				ShowLamps();
 				break;
 			case GameState.GameOver:
+				FreezeLamps();
 				ShowDestroyedObject();
 				break;
 			default:
 				throw new ArgumentOutOfRangeException();
+		}
+	}
+
+	private void FreezeLamps()
+	{
+		foreach (var lamp in _lamps)
+		{
+			lamp.FreezeCountdown();
 		}
 	}
 

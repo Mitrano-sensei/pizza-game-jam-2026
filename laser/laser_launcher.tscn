@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dicmch2gei53l"]
+
+[ext_resource type="Script" uid="uid://b2h3g1ypa4sx0" path="res://laser/LaserLauncher.cs" id="1_cxuv1"]
+[ext_resource type="PackedScene" uid="uid://b2udte82rrrxx" path="res://assets/window/fenetre.glb" id="2_24b4p"]
+
+[node name="LaserLauncher" type="Node3D" unique_id=1991011263 node_paths=PackedStringArray("_laserOrigin", "_curtain1", "_curtain2")]
+script = ExtResource("1_cxuv1")
+_laserOrigin = NodePath("LaserOrigin")
+_maxBounces = 12
+_color = 1
+_isActive = false
+_curtain1 = NodePath("fenetre/BézierCurve_002")
+_curtain2 = NodePath("fenetre/BézierCurve_003")
+
+[node name="LaserOrigin" type="Node3D" parent="." unique_id=1748962199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01517266)
+
+[node name="fenetre" parent="." unique_id=287143877 instance=ExtResource("2_24b4p")]
+transform = Transform3D(-2.03, 0, -1.7746824e-07, 0, 2.03, 0, 1.7746824e-07, 0, -2.03, 0, 0, 0)
+
+[editable path="fenetre"]

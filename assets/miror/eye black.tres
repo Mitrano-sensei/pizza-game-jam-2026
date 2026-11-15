@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c0r2q5hpwrpw0"]
+
+[resource]
+resource_name = "eye black"
+cull_mode = 2
+albedo_color = Color(0.16584513, 0.16584513, 0.16584513, 1)
+roughness = 0.5

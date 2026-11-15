@@ -26,13 +26,14 @@ public partial class SpringCharacterController : RigidBody3D
     [Export] private StringName _rightInput = "player_rotate_right";
 
     [ExportCategory("Rotation Settings")]
-    private LookAtMode _currentLookAtMode = LookAtMode.None;
+    [Export] private bool _isDirectionToggle = true;
     [Export] private float _lookAtAngle = 45f;
     [Export] private float _lookAtSpeed = 5f;
     [Export] private float _lookAtDamping = 5f;
     [Export] private StringName _lookLeftInput = "player_look_left";
     [Export] private StringName _lookRightInput = "player_look_right";
     [Export] private float _lookDebounce = 0.2f; // seconds
+    private LookAtMode _currentLookAtMode = LookAtMode.None;
     private ulong _lastLookInputMsec;
 
     public override void _PhysicsProcess(double delta)
@@ -81,6 +82,13 @@ public partial class SpringCharacterController : RigidBody3D
 
     private void ManageLookInput()
     {
+        if (!_isDirectionToggle)
+        {
+            int held = (Input.IsActionPressed(_lookRightInput) ? 1 : 0) - (Input.IsActionPressed(_lookLeftInput) ? 1 : 0);
+            _currentLookAtMode = (LookAtMode)((int)LookAtMode.None + held);
+            return;
+        }
+        
         int direction = 0;
         if (Input.IsActionJustPressed(_lookRightInput)) direction++;
         if (Input.IsActionJustPressed(_lookLeftInput)) direction--;

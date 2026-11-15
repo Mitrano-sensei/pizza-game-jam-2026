@@ -32,3 +32,13 @@ public enum LaserColor
     Green = 1,
     Blue = 2
 }
+
+public static class LaserColorExtensions
+{
+    public static Color ToColor(this LaserColor color) => color switch
+    {
+        LaserColor.Red => new Color(1, 0, 0),
+        LaserColor.Green => new Color(0, 1, 0),
+        _ => new Color(0, 0, 1),
+    };
+}
