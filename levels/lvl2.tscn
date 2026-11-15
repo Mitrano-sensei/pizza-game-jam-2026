@@ -83,15 +83,16 @@ _scene = ExtResource("7_b4hkr")
 [node name="BlueLamp1" parent="Laser & Lamp Stuff" unique_id=1076513118 instance=ExtResource("8_1xk4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.566586, 4.7090054, -1.6902685)
 _color = 2
-_countdownTimeInSeconds = 2.0
+_countdownTimeInSeconds = 3.0
 
 [node name="RedLamp1" parent="Laser & Lamp Stuff" unique_id=503220652 instance=ExtResource("8_1xk4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6108255, 4.8316994, -15.006437)
+_countdownTimeInSeconds = 12.0
 
 [node name="GreenLamp3" parent="Laser & Lamp Stuff" unique_id=1700453175 instance=ExtResource("8_1xk4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.027374, 1.4472399, -15.044247)
 _color = 1
-_countdownTimeInSeconds = 5.0
+_countdownTimeInSeconds = 7.0
 
 [node name="Room" type="Node3D" parent="." unique_id=814368777]
 
