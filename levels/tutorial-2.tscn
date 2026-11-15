@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cjt05k50wprk2" path="res://assets/lamp/lamp.tscn" id="9_2edx7"]
 [ext_resource type="Texture2D" uid="uid://cn7ongtkf0w1s" path="res://assets/kenney-prototype-textures-db6622fbe90621eed70a0b417ae8d97281f45e6c/addons/kenney_prototype_textures/purple/texture_05.png" id="9_6ym3j"]
 [ext_resource type="PackedScene" uid="uid://bhp1yf2hxymv0" path="res://assets/vampire/vampire_simple.tscn" id="9_cb1q0"]
+[ext_resource type="Script" uid="uid://cbiq2vsu8pgrh" path="res://utilities/PropsMover.cs" id="10_cb1q0"]
 [ext_resource type="Script" uid="uid://dlh1dui7ngqcj" path="res://laser/receiver/PushableObject.cs" id="11_jdm2u"]
 
 [sub_resource type="Environment" id="Environment_2edx7"]
@@ -19,6 +20,14 @@ glow_strength = 1.1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_htuhn"]
 size = Vector3(2, 2, 2)
+
+[sub_resource type="Curve3D" id="Curve3D_31nqk"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.4361987, 0, -3.541845),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8ls4"]
 albedo_texture = ExtResource("9_6ym3j")
@@ -99,6 +108,13 @@ _color = 1
 [node name="Vampire" parent="Laser & Lamp Stuff" unique_id=660542962 instance=ExtResource("9_cb1q0")]
 transform = Transform3D(0.35358053, 0, 0.93540406, 0, 1, 0, -0.93540406, 0, 0.35358053, -5.9725046, 0.50093746, -2.1709588)
 
+[node name="Path3D" type="Path3D" parent="Laser & Lamp Stuff" unique_id=1461369067 node_paths=PackedStringArray("_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1583395, 0.14895582, 0)
+curve = SubResource("Curve3D_31nqk")
+script = ExtResource("10_cb1q0")
+_target = NodePath("../Vampire")
+_speed = 1.0
+
 [node name="Room" type="Node3D" parent="." unique_id=933885971]
 
 [node name="Wall2" type="RigidBody3D" parent="Room" unique_id=2047449531]
@@ -134,6 +150,18 @@ size = Vector3(100, 0.1, 100)
 material = SubResource("StandardMaterial3D_s8ls4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor" unique_id=2007799959]
+shape = SubResource("BoxShape3D_jcsmg")
+
+[node name="Floor3" type="RigidBody3D" parent="Room" unique_id=1699316136]
+transform = Transform3D(1, 0, 0, 0, 0.9672741, -0.25373375, 0, 0.25373375, 0.9672741, 0, 0.9492605, -17.911306)
+gravity_scale = 0.0
+freeze = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Floor3" unique_id=985450969]
+size = Vector3(100, 0.1, 100)
+material = SubResource("StandardMaterial3D_s8ls4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor3" unique_id=268892943]
 shape = SubResource("BoxShape3D_jcsmg")
 
 [node name="Floor2" type="RigidBody3D" parent="Room" unique_id=1138075615]
