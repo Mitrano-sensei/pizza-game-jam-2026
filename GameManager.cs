@@ -10,7 +10,7 @@ public partial class GameManager : Node
 	[Export] private Godot.Collections.Array<DestructibleObject> _looseCondition = new();
 	
 	[ExportCategory("Settings")]
-	[Export] private float _lampFocusTime = 2f;
+	[Export] private float _lampFocusTime = 1.5f;
 	[Export(PropertyHint.File, "*.tscn")] private string _nextLevel;
 
 	private GameState _currentState = GameState.Playing;
