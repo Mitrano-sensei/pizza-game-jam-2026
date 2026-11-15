@@ -15,9 +15,13 @@ public partial class Lamp : Node3D, ILaserReceiver, ICameraFocusable
 	[Export] private Camera3D _camera;
 
 	private StandardMaterial3D _defaultMaterialValue;
+	private AudioStreamPlayer3D _audioStreamPlayer3D;
 	private CountdownTimer _countdownTimer;
 	private HoldTimer _litTimer;
 	private bool _isActive = false;
+	
+	private AudioStream _lightOffSound = ResourceLoader.Load<AudioStream>("res://audio/light_off.mp3");
+	private AudioStream _lightOnSound = ResourceLoader.Load<AudioStream>("res://audio/light_on.mp3");
 	
 	[Signal] public delegate void LitEventHandler();
 	[Signal] public delegate void UnlitEventHandler();
@@ -34,6 +38,8 @@ public partial class Lamp : Node3D, ILaserReceiver, ICameraFocusable
 		_defaultMaterialValue.AlbedoColor = GetAlbedoFromColor() * .75f;
 		_material.AlbedoColor = GetAlbedoFromColor() * .75f;
 		
+		_audioStreamPlayer3D = GetNode<AudioStreamPlayer3D>("AudioStreamPlayer3D");
+		
 		_countdownTimer = new CountdownTimer(_countdownTimeInSeconds);
 		_countdownTimer.Stop();
 
@@ -45,6 +51,10 @@ public partial class Lamp : Node3D, ILaserReceiver, ICameraFocusable
 		base._PhysicsProcess(delta);
 
 		if (!_isActive || !_countdownTimer.Tick(delta)) return;
+		
+		// Play Sound
+		_audioStreamPlayer3D.Stream = _lightOffSound;
+		_audioStreamPlayer3D.Play();
 		
 		// Reset the lamp to its default state
 		_material.AlbedoColor = _defaultMaterialValue.AlbedoColor;
@@ -64,11 +74,21 @@ public partial class Lamp : Node3D, ILaserReceiver, ICameraFocusable
 		_material.AlbedoColor = GetAlbedoFromColor();
 		_material.Emission = _material.AlbedoColor * 1.75f;
 		
+
+		
 		// Manage Timer
-		if (!_isActive) EmitSignal(SignalName.Lit);
-		if (!_isActive) GD.Print("Lit!");
+		if (!_isActive) {
+			EmitSignal(SignalName.Lit);
+			GD.Print("Lit!");
+			
+			// Play Sound
+			_audioStreamPlayer3D.Stream = _lightOnSound;
+			_audioStreamPlayer3D.Play();
+		}
+
 		_countdownTimer.Restart();
 		_isActive = true;
+		
 
 		return LaserReceiverType.StopBouncing;
 	}
