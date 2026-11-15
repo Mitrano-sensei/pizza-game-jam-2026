@@ -71,6 +71,6 @@ shape = SubResource("CapsuleShape3D_hyjps")
 transform = Transform3D(1, 0, 0, 0, 0.88612014, 0.46345568, 0, -0.46345568, 0.88612014, 0, 1.7975953, 2.8916802)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1847327337]
-volume_db = 20.0
+volume_db = 30.0
 
 [editable path="lamp"]

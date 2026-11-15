@@ -4,11 +4,11 @@
 [ext_resource type="Environment" uid="uid://c4ljys2pi5ufg" path="res://assets/world_environment.tres" id="2_6idix"]
 [ext_resource type="PackedScene" uid="uid://kcwavihn2kbp" path="res://player/mirror_man.tscn" id="3_dp6vc"]
 [ext_resource type="PackedScene" uid="uid://dhopd7ju88gr2" path="res://player/camera/camera_holder.tscn" id="4_nsktc"]
-[ext_resource type="Script" uid="uid://b2h3g1ypa4sx0" path="res://laser/LaserLauncher.cs" id="5_q5yks"]
 [ext_resource type="Script" uid="uid://doe5ix2j21i5s" path="res://utilities/ObjectPool.cs" id="6_422tr"]
 [ext_resource type="PackedScene" uid="uid://5mnyk1oarsdd" path="res://laser/simple_laser_beam.tscn" id="7_g5f6e"]
 [ext_resource type="PackedScene" uid="uid://cjt05k50wprk2" path="res://assets/lamp/lamp.tscn" id="8_fv26v"]
 [ext_resource type="PackedScene" uid="uid://dgh0tbl37wi7i" path="res://modular/floor.tscn" id="9_0qoj2"]
+[ext_resource type="PackedScene" uid="uid://dicmch2gei53l" path="res://laser/laser_launcher.tscn" id="9_422tr"]
 [ext_resource type="PackedScene" uid="uid://cx1vpyi4ovl6f" path="res://modular/slope.tscn" id="10_6idix"]
 [ext_resource type="PackedScene" uid="uid://bmn5avb6pexhu" path="res://modular/floor_modular.tscn" id="11_dp6vc"]
 [ext_resource type="PackedScene" uid="uid://dgkv30u0eckr1" path="res://modular/wall.tscn" id="12_nsktc"]
@@ -34,47 +34,27 @@ _playerTarget = NodePath("../MirrorMan")
 
 [node name="Laser & Lamp Stuff" type="Node3D" parent="." unique_id=1532316960]
 
-[node name="GreenLaserLauncher1" type="Node3D" parent="Laser & Lamp Stuff" unique_id=641508366 node_paths=PackedStringArray("_laserOrigin", "_laserPointPool")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.031663, 4.455246, 4.717865)
-script = ExtResource("5_q5yks")
-_laserOrigin = NodePath("LaserOrigin")
-_maxBounces = 12
-_color = 1
-_laserPointPool = NodePath("../LaserPool")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Laser & Lamp Stuff/GreenLaserLauncher1" unique_id=128062032]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.8836169, 0.101519585, 0)
-height = 1.5
-
-[node name="LaserOrigin" type="Node3D" parent="Laser & Lamp Stuff/GreenLaserLauncher1" unique_id=1951153655]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8732414, 0.24596453, -0.76)
-
-[node name="GreenLaserLauncher2" type="Node3D" parent="Laser & Lamp Stuff" unique_id=341990107 node_paths=PackedStringArray("_laserOrigin", "_laserPointPool")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6237998, 0.94283366, 4.717865)
-script = ExtResource("5_q5yks")
-_laserOrigin = NodePath("LaserOrigin")
-_maxBounces = 12
-_color = 1
-_laserPointPool = NodePath("../LaserPool")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Laser & Lamp Stuff/GreenLaserLauncher2" unique_id=1952850079]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.813385, 0.66677856, 0)
-height = 1.5
-
-[node name="LaserOrigin" type="Node3D" parent="Laser & Lamp Stuff/GreenLaserLauncher2" unique_id=1650748043]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7691053, 0.6391218, -0.76)
-
 [node name="LaserPool" type="Node3D" parent="Laser & Lamp Stuff" unique_id=1236922665]
 script = ExtResource("6_422tr")
 _scene = ExtResource("7_g5f6e")
 
 [node name="GreenLamp1" parent="Laser & Lamp Stuff" unique_id=1076513118 instance=ExtResource("8_fv26v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.811077, 4.1929855, -12.851082)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.811077, 4.3857555, -12.851082)
 _color = 1
 
 [node name="GreenLamp2" parent="Laser & Lamp Stuff" unique_id=503220652 instance=ExtResource("8_fv26v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.811077, 1.6364293, -12.84148)
 _color = 1
+
+[node name="LaserLauncher" parent="Laser & Lamp Stuff" unique_id=1991011263 node_paths=PackedStringArray("_laserPointPool") instance=ExtResource("9_422tr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8607683, 4.8243465, 7.7185907)
+_isActive = true
+_laserPointPool = NodePath("../LaserPool")
+
+[node name="LaserLauncher2" parent="Laser & Lamp Stuff" unique_id=658580801 node_paths=PackedStringArray("_laserPointPool") instance=ExtResource("9_422tr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7834692, 1.7046123, 8.050308)
+_isActive = true
+_laserPointPool = NodePath("../LaserPool")
 
 [node name="Room" type="Node3D" parent="." unique_id=814368777]
 
@@ -82,7 +62,13 @@ _color = 1
 metadata/_edit_lock_ = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Room" unique_id=269852692]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.609789, -15.63908)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.4520335, -2.166748)
+light_energy = 1.5
+omni_range = 56.81962
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Room" unique_id=614122199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.512431, -11.757476)
+light_energy = 1.5
 omni_range = 56.81962
 
 [node name="Floor2" parent="Room" unique_id=996298008 instance=ExtResource("10_6idix")]
