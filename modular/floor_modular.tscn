@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bmn5avb6pexhu"]
+
+[ext_resource type="Texture2D" uid="uid://03a7io0i7y3w" path="res://assets/floor/granite-tile-unity/granite-tile_albedo.png" id="1_pomet"]
+[ext_resource type="Texture2D" uid="uid://6kupnavbax6w" path="res://assets/floor/granite-tile-unity/granite-tile_ao.png" id="2_3upix"]
+[ext_resource type="Texture2D" uid="uid://bcrdoygd3u1lo" path="res://assets/floor/granite-tile-unity/granite-tile_height.png" id="3_ydfy4"]
+[ext_resource type="Texture2D" uid="uid://d376b33813h2p" path="res://assets/floor/granite-tile-unity/granite-tile_normal-ogl.png" id="4_166pj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4te73"]
+albedo_texture = ExtResource("1_pomet")
+normal_texture = ExtResource("4_166pj")
+ao_enabled = true
+ao_texture = ExtResource("2_3upix")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_ydfy4")
+uv1_scale = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31nqk"]
+size = Vector3(7, 0.2, 10)
+
+[node name="Floor" type="RigidBody3D" unique_id=1730644408]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+gravity_scale = 0.0
+freeze = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=532634612]
+size = Vector3(7, 0.1, 10)
+material = SubResource("StandardMaterial3D_4te73")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=400705117]
+shape = SubResource("BoxShape3D_31nqk")
