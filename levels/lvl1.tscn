@@ -56,11 +56,11 @@ _color = 1
 _laserPointPool = NodePath("../LaserPool")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Laser & Lamp Stuff/GreenLaserLauncher2" unique_id=1952850079]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.813385, 0.27275753, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.813385, 0.66677856, 0)
 height = 1.5
 
 [node name="LaserOrigin" type="Node3D" parent="Laser & Lamp Stuff/GreenLaserLauncher2" unique_id=1650748043]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7691053, 0.24596453, -0.76)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7691053, 0.6391218, -0.76)
 
 [node name="LaserPool" type="Node3D" parent="Laser & Lamp Stuff" unique_id=1236922665]
 script = ExtResource("6_422tr")
