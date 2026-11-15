@@ -74,7 +74,7 @@ _countdownTimeInSeconds = 5.0
 [node name="GreenLamp2" parent="Laser & Lamp Stuff" unique_id=503220652 instance=ExtResource("8_fv26v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.811077, 1.6364293, -12.84148)
 _color = 1
-_countdownTimeInSeconds = 2.0
+_countdownTimeInSeconds = 5.0
 
 [node name="Room" type="Node3D" parent="." unique_id=814368777]
 

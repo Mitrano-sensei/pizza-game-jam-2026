@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://dmvor4qgqgsem"]
+
+[ext_resource type="Script" uid="uid://biqbyxf258skq" path="res://GameManager.cs" id="1_kjdsk"]
+[ext_resource type="Environment" uid="uid://c4ljys2pi5ufg" path="res://assets/world_environment.tres" id="2_h4hiw"]
+[ext_resource type="PackedScene" uid="uid://kcwavihn2kbp" path="res://player/mirror_man.tscn" id="3_0rwxs"]
+[ext_resource type="PackedScene" uid="uid://dhopd7ju88gr2" path="res://player/camera/camera_holder.tscn" id="4_8o617"]
+[ext_resource type="Script" uid="uid://b2h3g1ypa4sx0" path="res://laser/LaserLauncher.cs" id="5_o8hym"]
+[ext_resource type="Script" uid="uid://doe5ix2j21i5s" path="res://utilities/ObjectPool.cs" id="6_e62ga"]
+[ext_resource type="PackedScene" uid="uid://5mnyk1oarsdd" path="res://laser/simple_laser_beam.tscn" id="7_b4hkr"]
+[ext_resource type="PackedScene" uid="uid://cjt05k50wprk2" path="res://assets/lamp/lamp.tscn" id="8_1xk4f"]
+[ext_resource type="PackedScene" uid="uid://dgh0tbl37wi7i" path="res://modular/floor.tscn" id="9_3cwf2"]
+[ext_resource type="PackedScene" uid="uid://cx1vpyi4ovl6f" path="res://modular/slope.tscn" id="10_cxv5d"]
+[ext_resource type="PackedScene" uid="uid://bmn5avb6pexhu" path="res://modular/floor_modular.tscn" id="11_423c7"]
+
+[node name="Lvl2" type="Node3D" unique_id=1118483983 node_paths=PackedStringArray("_camera", "_lamps")]
+script = ExtResource("1_kjdsk")
+_camera = NodePath("Character & Camera Stuff/CameraHolder")
+_lamps = [NodePath("Laser & Lamp Stuff/BlueLamp1"), NodePath("Laser & Lamp Stuff/RedLamp1"), NodePath("Laser & Lamp Stuff/GreenLamp3")]
+_nextLevel = "uid://dfe8d2k71ce86"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=79367906]
+environment = ExtResource("2_h4hiw")
+
+[node name="Character & Camera Stuff" type="Node3D" parent="." unique_id=1596390477]
+
+[node name="MirrorMan" parent="Character & Camera Stuff" unique_id=370772678 instance=ExtResource("3_0rwxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.97233, 3.2341542, -0.4060645)
+
+[node name="CameraHolder" parent="Character & Camera Stuff" unique_id=851691229 node_paths=PackedStringArray("_playerTarget") instance=ExtResource("4_8o617")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.9767165)
+_playerTarget = NodePath("../MirrorMan")
+
+[node name="Laser & Lamp Stuff" type="Node3D" parent="." unique_id=1532316960]
+
+[node name="RedLaserLauncher1" type="Node3D" parent="Laser & Lamp Stuff" unique_id=641508366 node_paths=PackedStringArray("_laserOrigin", "_laserPointPool")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.031663, 4.455246, 4.717865)
+script = ExtResource("5_o8hym")
+_laserOrigin = NodePath("LaserOrigin")
+_maxBounces = 12
+_laserPointPool = NodePath("../LaserPool")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Laser & Lamp Stuff/RedLaserLauncher1" unique_id=128062032]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.8836169, 0.101519585, 0)
+height = 1.5
+
+[node name="LaserOrigin" type="Node3D" parent="Laser & Lamp Stuff/RedLaserLauncher1" unique_id=1951153655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8732414, 0.24596453, -0.76)
+
+[node name="GreenLaserLauncher2" type="Node3D" parent="Laser & Lamp Stuff" unique_id=341990107 node_paths=PackedStringArray("_laserOrigin", "_laserPointPool")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6237998, 0.94283366, 4.717865)
+script = ExtResource("5_o8hym")
+_laserOrigin = NodePath("LaserOrigin")
+_maxBounces = 12
+_color = 1
+_laserPointPool = NodePath("../LaserPool")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Laser & Lamp Stuff/GreenLaserLauncher2" unique_id=1952850079]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.813385, 0.45479894, 0)
+height = 1.5
+
+[node name="LaserOrigin" type="Node3D" parent="Laser & Lamp Stuff/GreenLaserLauncher2" unique_id=1650748043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7691053, 0.24596453, -0.76)
+
+[node name="bLUELaserLauncher1" type="Node3D" parent="Laser & Lamp Stuff" unique_id=293923880 node_paths=PackedStringArray("_laserOrigin", "_laserPointPool")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8435144, 4.612035, 9.286539)
+script = ExtResource("5_o8hym")
+_laserOrigin = NodePath("LaserOrigin")
+_maxBounces = 12
+_color = 2
+_laserPointPool = NodePath("../LaserPool")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Laser & Lamp Stuff/bLUELaserLauncher1" unique_id=693621799]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.813385, 0.27275753, 0)
+height = 1.5
+
+[node name="LaserOrigin" type="Node3D" parent="Laser & Lamp Stuff/bLUELaserLauncher1" unique_id=2113939706]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7691053, 0.24596453, -0.76)
+
+[node name="LaserPool" type="Node3D" parent="Laser & Lamp Stuff" unique_id=1236922665]
+script = ExtResource("6_e62ga")
+_scene = ExtResource("7_b4hkr")
+
+[node name="BlueLamp1" parent="Laser & Lamp Stuff" unique_id=1076513118 instance=ExtResource("8_1xk4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.566586, 4.7090054, -1.6902685)
+_color = 2
+_countdownTimeInSeconds = 2.0
+
+[node name="RedLamp1" parent="Laser & Lamp Stuff" unique_id=503220652 instance=ExtResource("8_1xk4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6108255, 4.8316994, -15.006437)
+
+[node name="GreenLamp3" parent="Laser & Lamp Stuff" unique_id=1700453175 instance=ExtResource("8_1xk4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.027374, 1.4472399, -15.044247)
+_color = 1
+_countdownTimeInSeconds = 5.0
+
+[node name="Room" type="Node3D" parent="." unique_id=814368777]
+
+[node name="Floor" parent="Room" unique_id=1730644408 instance=ExtResource("9_3cwf2")]
+metadata/_edit_lock_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Room" unique_id=269852692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.609789, -15.63908)
+omni_range = 56.81962
+
+[node name="Floor2" parent="Room" unique_id=996298008 instance=ExtResource("10_cxv5d")]
+transform = Transform3D(1, 0, 0, 0, 0.9396926, -0.34202012, 0, 0.34202012, 0.9396926, 6.736708, 1.7214141, -4.192938)
+
+[node name="Floor3" parent="Room" unique_id=2119230367 instance=ExtResource("11_423c7")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 6.749791, 3.4221897, -13.861371)
+
+[node name="Floor4" parent="Room" unique_id=1844465397 instance=ExtResource("10_cxv5d")]
+transform = Transform3D(-1, 2.990035e-08, 8.2150535e-08, 0, 0.9396925, -0.3420201, -8.742277e-08, -0.3420201, -0.9396925, -6.453867, 1.7214141, -6.858397)
+
+[node name="Floor5" parent="Room" unique_id=52214256 instance=ExtResource("11_423c7")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 0.9999999, 0, -8.742277e-08, 0, -0.9999999, -6.4669514, 3.4221897, 2.8100362)
