@@ -2,7 +2,7 @@ using Godot;
 
 public partial class PauseMenu : CanvasLayer
 {
-	private const string MainMenuPath = "res://ui/main-menu.tscn";
+	private const string MainMenuPath = "res://main_scene.tscn";
 
 	[ExportCategory("References")]
 	[Export] private Button _resumeButton;
