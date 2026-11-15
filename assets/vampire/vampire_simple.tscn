@@ -40,6 +40,30 @@ _particles3D = NodePath("SmokeParticle1")
 [node name="vampire" parent="." unique_id=1476845004 instance=ExtResource("1_yiu2j")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 
+[node name="ears_002" parent="vampire" index="3" unique_id=2114246430]
+layers = 512
+
+[node name="eyebrows_001" parent="vampire" index="4" unique_id=2069584365]
+layers = 512
+
+[node name="eyes_001" parent="vampire" index="5" unique_id=1000309175]
+layers = 512
+
+[node name="hair_001" parent="vampire" index="6" unique_id=1728003155]
+layers = 512
+
+[node name="hands_001" parent="vampire" index="7" unique_id=1585451704]
+layers = 512
+
+[node name="head_001" parent="vampire" index="8" unique_id=1540268941]
+layers = 512
+
+[node name="mouth_001" parent="vampire" index="9" unique_id=451339860]
+layers = 512
+
+[node name="teeth_001" parent="vampire" index="11" unique_id=1555315760]
+layers = 512
+
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1372940072]
 transform = Transform3D(1, 0, 0, 0, 0.9448944, 0.32737532, 0, -0.32737532, 0.9448944, 0, 3.1112309, 4.120727)
 
