@@ -46,8 +46,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_4l36s")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2nfpl"]
-size = Vector3(0.5154495, 1.9117432, 0.5343256)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hyjps"]
+radius = 0.7319336
+height = 2.1605225
 
 [node name="Lamp" type="RigidBody3D" unique_id=1700453175 node_paths=PackedStringArray("_meshThatChangesColor", "_camera")]
 freeze = true
@@ -59,12 +60,12 @@ _camera = NodePath("Camera3D")
 [node name="lamp" parent="." unique_id=645859587 instance=ExtResource("1_ho6c8")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="Sphere" parent="lamp/Empty_001" parent_id_path=PackedInt32Array(645859587, 556692802) index="4" unique_id=1152480214]
+[node name="Sphere" parent="lamp/Empty_001" parent_id_path=PackedInt32Array(645859587, 1423368463) index="4" unique_id=529232383]
 mesh = SubResource("ArrayMesh_bkoqp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=824533371]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002483368, 0.15582275, 0.0029273033)
-shape = SubResource("BoxShape3D_2nfpl")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.057922363, 0)
+shape = SubResource("CapsuleShape3D_hyjps")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=71946925]
 transform = Transform3D(1, 0, 0, 0, 0.88612014, 0.46345568, 0, -0.46345568, 0.88612014, 0, 1.7975953, 2.8916802)
