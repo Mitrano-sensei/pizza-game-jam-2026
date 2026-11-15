@@ -16,7 +16,7 @@
 script = ExtResource("1_0qoj2")
 _camera = NodePath("Character & Camera Stuff/CameraHolder")
 _lamps = [NodePath("Laser & Lamp Stuff/GreenLamp1"), NodePath("Laser & Lamp Stuff/GreenLamp2")]
-_nextLevel = "uid://dfe8d2k71ce86"
+_nextLevel = "uid://dmvor4qgqgsem"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=79367906]
 environment = ExtResource("2_6idix")

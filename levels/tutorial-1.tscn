@@ -28,7 +28,7 @@ size = Vector3(100, 0.1, 100)
 script = ExtResource("1_pyaib")
 _camera = NodePath("Character & Camera Stuff/CameraHolder")
 _lamps = [NodePath("Laser & Lamp Stuff/Lamp2")]
-_nextLevel = "uid://dfe8d2k71ce86"
+_nextLevel = "uid://w17pjl4voq2o"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=79367906]
 environment = ExtResource("2_43kx8")
