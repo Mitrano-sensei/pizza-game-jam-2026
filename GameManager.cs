@@ -22,8 +22,32 @@ public partial class GameManager : Node
 		base._Ready();
 		_endMenu = GD.Load<PackedScene>("res://ui/level-end-menu.tscn").Instantiate<LevelEndMenu>();
 		_pauseMenu = GD.Load<PackedScene>("res://ui/pause-menu.tscn").Instantiate<PauseMenu>();
+		BuildLampHud();
 		AddChild(_endMenu);
 		AddChild(_pauseMenu);
+	}
+
+	// One circle per lamp, in lamp color, bright when lit and dim when unlit.
+	private void BuildLampHud()
+	{
+		var layer = new CanvasLayer();
+		var box = new HBoxContainer { Position = new Vector2(16, 16) };
+		box.AddThemeConstantOverride("separation", 8);
+		layer.AddChild(box);
+		AddChild(layer);
+
+		foreach (var lamp in _lamps)
+		{
+			var color = lamp.Color.ToColor();
+			var style = new StyleBoxFlat { BgColor = lamp.IsActive ? color : color.Darkened(0.7f) };
+			style.SetCornerRadiusAll(16); // 32px square + radius 16 = circle
+			var dot = new Panel { CustomMinimumSize = new Vector2(32, 32) };
+			dot.AddThemeStyleboxOverride("panel", style);
+			box.AddChild(dot);
+
+			lamp.Lit += () => style.BgColor = color;
+			lamp.Unlit += () => style.BgColor = color.Darkened(0.7f);
+		}
 	}
 
 	public override void _Process(double delta)

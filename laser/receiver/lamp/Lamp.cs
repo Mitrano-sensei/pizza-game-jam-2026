@@ -32,6 +32,7 @@ public partial class Lamp : Node3D, ILaserReceiver, ICameraFocusable
 	[Signal] public delegate void UnlitEventHandler();
 
 	public bool IsActive => _isActive;
+	public LaserColor Color => _color;
 
 	public override void _Ready()
 	{

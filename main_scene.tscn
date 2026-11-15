@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://djmyny6vh0b2u"]
+
+[ext_resource type="PackedScene" uid="uid://bx30tk3v4ike4" path="res://ui/main-menu.tscn" id="1_d5x1h"]
+[ext_resource type="Environment" uid="uid://c4ljys2pi5ufg" path="res://assets/world_environment.tres" id="2_8mm7a"]
+[ext_resource type="PackedScene" uid="uid://kcwavihn2kbp" path="res://player/mirror_man.tscn" id="4_8mm7a"]
+[ext_resource type="PackedScene" uid="uid://dgh0tbl37wi7i" path="res://modular/floor.tscn" id="5_8mm7a"]
+[ext_resource type="PackedScene" uid="uid://bhp1yf2hxymv0" path="res://assets/vampire/vampire_simple.tscn" id="5_hq1ik"]
+[ext_resource type="PackedScene" uid="uid://dbm4v87he2nhb" path="res://laser/receiver/table/table.tscn" id="6_hq1ik"]
+
+[node name="MainScene" type="Node3D" unique_id=400412911]
+
+[node name="MainMenu" parent="." unique_id=798242419 instance=ExtResource("1_d5x1h")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=846180602]
+transform = Transform3D(1, 0, 0, 0, 0.993173, 0.11665091, 0, -0.11665091, 0.993173, 0.17625666, 1.5108967, 1.9590254)
+environment = ExtResource("2_8mm7a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=921236580]
+transform = Transform3D(1, 0, 0, 0, 0.77744675, 0.62894887, 0, -0.62894887, 0.77744675, 0, 2.5950828, 0)
+light_color = Color(0.9999997, 0.9049801, 0.8979904, 1)
+light_energy = 0.4
+
+[node name="Floor" parent="." unique_id=1730644408 instance=ExtResource("5_8mm7a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.84354186, -0.38061035, 0.6819689)
+
+[node name="MirrorMan" parent="." unique_id=370772678 instance=ExtResource("4_8mm7a")]
+transform = Transform3D(0.96660614, 0, 0.256267, -0.018781627, 0.9973107, 0.07084187, -0.25557783, -0.0732893, 0.96400666, 0.17248654, 0.03531456, 0.8924887)
+
+[node name="Vampire" parent="." unique_id=660542962 instance=ExtResource("5_hq1ik")]
+transform = Transform3D(-0.85879266, 0, -0.5123233, 0, 1, 0, 0.5123233, 0, -0.85879266, 1.9187407, -0.033929586, 4.4165)
+
+[node name="Table" parent="." unique_id=1750522446 instance=ExtResource("6_hq1ik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47317564, -0.051133797, 2.8621354)
