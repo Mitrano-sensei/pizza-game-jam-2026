@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dgss4nmngacuu"]
 
 [ext_resource type="Script" uid="uid://cxs0o0un8yh2w" path="res://ui/PauseMenu.cs" id="1_pause"]
-[ext_resource type="PackedScene" uid="uid://csyx1nav0op4k" path="res://levels/tutorial-1.tscn" id="2_lvl0"]
-[ext_resource type="PackedScene" uid="uid://w17pjl4voq2o" path="res://levels/lvl1.tscn" id="3_of3uj"]
-[ext_resource type="PackedScene" uid="uid://dmvor4qgqgsem" path="res://levels/lvl2.tscn" id="4_dkhyu"]
-[ext_resource type="PackedScene" uid="uid://cyvfthusisfo8" path="res://levels/lvl3.tscn" id="5_dkhyu"]
-[ext_resource type="PackedScene" uid="uid://d123qabf7xgyj" path="res://levels/lvl4.tscn" id="6_dkhyu"]
+[ext_resource type="PackedScene" uid="uid://csyx1nav0op4k" path="res://levels/lvl1.tscn" id="2_lvl0"]
+[ext_resource type="PackedScene" uid="uid://w17pjl4voq2o" path="res://levels/lvl2.tscn" id="3_of3uj"]
+[ext_resource type="PackedScene" uid="uid://dmvor4qgqgsem" path="res://levels/lvl3.tscn" id="4_dkhyu"]
+[ext_resource type="PackedScene" uid="uid://cyvfthusisfo8" path="res://levels/lvl4.tscn" id="5_dkhyu"]
+[ext_resource type="PackedScene" uid="uid://d123qabf7xgyj" path="res://levels/lvl5.tscn" id="6_dkhyu"]
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=2059841664 node_paths=PackedStringArray("_resumeButton", "_resetButton", "_levelSelectButton", "_mainMenuButton", "_quitButton", "_levelPanel", "_levelList", "_volumeSlider")]
 layer = 2
