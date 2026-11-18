@@ -85,10 +85,10 @@ grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_tuto")
 text = "Tutorial:
 WASD or ZQSD to move
-Q/E or A/E to rotate Left/Right
+left clic/right clic to rotate Left/Right
 Light all the lamps using the laser to win a level
 Red lights stay on for a long time, others not so much !
-Avoid to burn your vampire friend"
+Avoid to burn your vampire friends"
 autowrap_mode = 3
 
 [node name="LevelPanel" type="PanelContainer" parent="." unique_id=117833245]
