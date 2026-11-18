@@ -1,0 +1,213 @@
+[gd_scene format=3 uid="uid://d123qabf7xgyj"]
+
+[ext_resource type="Script" uid="uid://biqbyxf258skq" path="res://GameManager.cs" id="1_0mum0"]
+[ext_resource type="Environment" uid="uid://c4ljys2pi5ufg" path="res://assets/world_environment.tres" id="2_y8ngv"]
+[ext_resource type="PackedScene" uid="uid://kcwavihn2kbp" path="res://player/mirror_man.tscn" id="3_gbdlg"]
+[ext_resource type="PackedScene" uid="uid://dhopd7ju88gr2" path="res://player/camera/camera_holder.tscn" id="4_6o7l1"]
+[ext_resource type="Script" uid="uid://doe5ix2j21i5s" path="res://utilities/ObjectPool.cs" id="5_dtuhy"]
+[ext_resource type="PackedScene" uid="uid://5mnyk1oarsdd" path="res://laser/simple_laser_beam.tscn" id="6_l7evy"]
+[ext_resource type="PackedScene" uid="uid://cjt05k50wprk2" path="res://assets/lamp/lamp.tscn" id="7_a3qsp"]
+[ext_resource type="PackedScene" uid="uid://dicmch2gei53l" path="res://laser/laser_launcher.tscn" id="8_6jsx7"]
+[ext_resource type="PackedScene" uid="uid://dgh0tbl37wi7i" path="res://modular/floor.tscn" id="9_ifv38"]
+[ext_resource type="PackedScene" uid="uid://dgkv30u0eckr1" path="res://modular/wall.tscn" id="10_v70o4"]
+[ext_resource type="PackedScene" uid="uid://cu7s33eyqmq6i" path="res://modular/ceiling.tscn" id="11_htix8"]
+[ext_resource type="PackedScene" uid="uid://bhp1yf2hxymv0" path="res://assets/vampire/vampire_simple.tscn" id="12_510ov"]
+[ext_resource type="PackedScene" uid="uid://cx1vpyi4ovl6f" path="res://modular/slope.tscn" id="13_sbnka"]
+[ext_resource type="PackedScene" uid="uid://bmn5avb6pexhu" path="res://modular/floor_modular.tscn" id="14_cts1l"]
+[ext_resource type="Script" uid="uid://cbiq2vsu8pgrh" path="res://utilities/PropsMover.cs" id="15_y8ngv"]
+
+[sub_resource type="Curve3D" id="Curve3D_rmkky"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.40175438, 0, 1.5761118, 0, 0, 0, 0, 0, 0, 0.4361992, 0, -5.457903),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="Lvl2" type="Node3D" unique_id=1118483983 node_paths=PackedStringArray("_camera", "_lamps", "_looseCondition")]
+script = ExtResource("1_0mum0")
+_camera = NodePath("Character & Camera Stuff/CameraHolder")
+_lamps = [NodePath("Laser & Lamp Stuff/RedLamp1"), NodePath("Laser & Lamp Stuff/RedLamp2"), NodePath("Laser & Lamp Stuff/RedLamp3"), NodePath("Laser & Lamp Stuff/RedLamp4"), NodePath("Laser & Lamp Stuff/GreenLamp3"), NodePath("Laser & Lamp Stuff/GreenLamp4")]
+_looseCondition = [NodePath("Vampire"), NodePath("Vampire3"), NodePath("Vampire2")]
+_nextLevel = "uid://csyx1nav0op4k"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=79367906]
+environment = ExtResource("2_y8ngv")
+
+[node name="Character & Camera Stuff" type="Node3D" parent="." unique_id=1596390477]
+
+[node name="MirrorMan" parent="Character & Camera Stuff" unique_id=370772678 instance=ExtResource("3_gbdlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6065054, -0.13972068, -8.88998)
+
+[node name="CameraHolder" parent="Character & Camera Stuff" unique_id=851691229 node_paths=PackedStringArray("_playerTarget") instance=ExtResource("4_6o7l1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.9767165)
+_playerTarget = NodePath("../MirrorMan")
+
+[node name="Laser & Lamp Stuff" type="Node3D" parent="." unique_id=1532316960]
+
+[node name="LaserPool" type="Node3D" parent="Laser & Lamp Stuff" unique_id=1236922665]
+script = ExtResource("5_dtuhy")
+_scene = ExtResource("6_l7evy")
+
+[node name="RedLamp1" parent="Laser & Lamp Stuff" unique_id=503220652 instance=ExtResource("7_a3qsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.213242, 1.594768, 2.301281)
+_color = 1
+_countdownTimeInSeconds = 20.0
+
+[node name="RedLamp2" parent="Laser & Lamp Stuff" unique_id=286724632 instance=ExtResource("7_a3qsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.103905, 1.622323, 1.731616)
+_color = 1
+
+[node name="RedLamp3" parent="Laser & Lamp Stuff" unique_id=1700453175 instance=ExtResource("7_a3qsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.019835, 1.6999032, -8.6823015)
+_color = 2
+_countdownTimeInSeconds = 5.0
+
+[node name="RedLamp4" parent="Laser & Lamp Stuff" unique_id=524915792 instance=ExtResource("7_a3qsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.019835, 1.6999032, -13.659585)
+_countdownTimeInSeconds = 20.0
+
+[node name="GreenLamp3" parent="Laser & Lamp Stuff" unique_id=1442088899 instance=ExtResource("7_a3qsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.185356, 4.6873727, 4.679931)
+_countdownTimeInSeconds = 20.0
+
+[node name="GreenLamp4" parent="Laser & Lamp Stuff" unique_id=1495009301 instance=ExtResource("7_a3qsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.801468, 4.6873727, 4.679931)
+_countdownTimeInSeconds = 20.0
+
+[node name="LaserLauncher5" parent="Laser & Lamp Stuff" unique_id=825768437 node_paths=PackedStringArray("_laserPointPool") instance=ExtResource("8_6jsx7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.174919, 1.5559599, 7.3984294)
+_isActive = true
+_laserPointPool = NodePath("../LaserPool")
+
+[node name="LaserLauncher7" parent="Laser & Lamp Stuff" unique_id=1991011263 node_paths=PackedStringArray("_laserPointPool") instance=ExtResource("8_6jsx7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2528477, 1.4077466, 7.3984294)
+_color = 2
+_isActive = true
+_laserPointPool = NodePath("../LaserPool")
+
+[node name="LaserLauncher8" parent="Laser & Lamp Stuff" unique_id=871134612 node_paths=PackedStringArray("_laserPointPool") instance=ExtResource("8_6jsx7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2528477, 1.4077466, 7.3984294)
+_color = 0
+_isActive = true
+_laserPointPool = NodePath("../LaserPool")
+
+[node name="LaserLauncher6" parent="Laser & Lamp Stuff" unique_id=342941057 node_paths=PackedStringArray("_laserPointPool") instance=ExtResource("8_6jsx7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5098438, 4.91685, 7.3984294)
+_color = 0
+_isActive = true
+_laserPointPool = NodePath("../LaserPool")
+
+[node name="Room" type="Node3D" parent="." unique_id=814368777]
+
+[node name="Floor" parent="Room" unique_id=1730644408 instance=ExtResource("9_ifv38")]
+metadata/_edit_lock_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Room" unique_id=269852692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.609789, -13.166185)
+light_energy = 1.5
+omni_range = 56.81962
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Room" unique_id=204333885]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.1430397, 0.42713547)
+light_energy = 1.5
+omni_range = 56.81962
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Room" unique_id=1480885203]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.1430397, 0.42713547)
+light_energy = 1.5
+omni_range = 56.81962
+
+[node name="Wall5" parent="Room" unique_id=1038239716 instance=ExtResource("10_v70o4")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -27.48581, 4.988783, 3.371585)
+
+[node name="Wall17" parent="Room" unique_id=1896561264 instance=ExtResource("10_v70o4")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -27.48581, 4.988783, 3.371585)
+
+[node name="Wall6" parent="Room" unique_id=1475014569 instance=ExtResource("10_v70o4")]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 10.386562, 5.114546, 3.371585)
+
+[node name="Wall7" parent="Room" unique_id=703390622 instance=ExtResource("10_v70o4")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -3.4011486, 5.0854034, 8.14413)
+
+[node name="Wall14" parent="Room" unique_id=1429908014 instance=ExtResource("10_v70o4")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 5.7928143, 5.0854034, 8.14413)
+
+[node name="Wall15" parent="Room" unique_id=372872037 instance=ExtResource("10_v70o4")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -22.541048, 5.0255575, 8.14413)
+
+[node name="Wall16" parent="Room" unique_id=747963722 instance=ExtResource("10_v70o4")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -13.347086, 5.0255575, 8.14413)
+
+[node name="Wall18" parent="Room" unique_id=1662564278 instance=ExtResource("10_v70o4")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -22.541048, 5.0619655, -1.5998659)
+
+[node name="Wall19" parent="Room" unique_id=1294892332 instance=ExtResource("10_v70o4")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -13.347086, 5.0619655, -19.056866)
+
+[node name="Wall8" parent="Room" unique_id=590379352 instance=ExtResource("10_v70o4")]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 10.412662, 5.114546, -6.597798)
+
+[node name="Wall12" parent="Room" unique_id=1598056699 instance=ExtResource("10_v70o4")]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 10.412662, 5.114546, -16.574764)
+
+[node name="Wall10" parent="Room" unique_id=1670154813 instance=ExtResource("10_v70o4")]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, -17.606144, 4.988783, -6.5986)
+
+[node name="Wall13" parent="Room" unique_id=393079159 instance=ExtResource("10_v70o4")]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, -17.606144, 4.988783, -16.55945)
+
+[node name="Wall9" parent="Room" unique_id=1544150401 instance=ExtResource("10_v70o4")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -3.3144248, 5.1658697, -18.936443)
+
+[node name="Wall11" parent="Room" unique_id=390971643 instance=ExtResource("10_v70o4")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 6.6472845, 5.1404915, -18.936443)
+
+[node name="Ceiling" parent="Room" unique_id=493650977 instance=ExtResource("11_htix8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.76560736, 10.129045, -9.306563)
+
+[node name="Vampire" parent="." unique_id=660542962 instance=ExtResource("12_510ov")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.4752145, 1.6354153, -0.37299442)
+
+[node name="Vampire3" parent="." unique_id=1510031755 node_paths=PackedStringArray("_visualNodes") instance=ExtResource("12_510ov")]
+transform = Transform3D(0.3155787, 0, 0.9488994, 0, 1, 0, -0.9488994, 0, 0.3155787, -15.020238, 3.6089723, -17.03178)
+_visualNodes = [NodePath("../Vampire/vampire/ears_002"), NodePath("../Vampire/vampire/eyebrows_001"), NodePath("../Vampire/vampire/eyes_001"), NodePath("../Vampire/vampire/hair_001"), NodePath("../Vampire/vampire/hands_001"), NodePath("../Vampire/vampire/head_001"), NodePath("../Vampire/vampire/mouth_001"), NodePath("../Vampire/vampire/teeth_001")]
+
+[node name="Vampire5" parent="." unique_id=1011577480 node_paths=PackedStringArray("_visualNodes") instance=ExtResource("12_510ov")]
+transform = Transform3D(0.9659258, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.9659258, 6.0983534, 3.6089723, -17.03178)
+_visualNodes = [NodePath("../Vampire/vampire/ears_002"), NodePath("../Vampire/vampire/eyebrows_001"), NodePath("../Vampire/vampire/eyes_001"), NodePath("../Vampire/vampire/hair_001"), NodePath("../Vampire/vampire/hands_001"), NodePath("../Vampire/vampire/head_001"), NodePath("../Vampire/vampire/mouth_001"), NodePath("../Vampire/vampire/teeth_001")]
+
+[node name="Vampire2" parent="." unique_id=1307967055 node_paths=PackedStringArray("_visualNodes") instance=ExtResource("12_510ov")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18.093601, 0.30635285, 0.019026518)
+_visualNodes = [NodePath("../Vampire/vampire/ears_002"), NodePath("../Vampire/vampire/eyebrows_001"), NodePath("../Vampire/vampire/eyes_001"), NodePath("../Vampire/vampire/hair_001"), NodePath("../Vampire/vampire/hands_001"), NodePath("../Vampire/vampire/head_001"), NodePath("../Vampire/vampire/mouth_001"), NodePath("../Vampire/vampire/teeth_001")]
+
+[node name="Vampire4" parent="." unique_id=1225215307 node_paths=PackedStringArray("_visualNodes") instance=ExtResource("12_510ov")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18.093601, 3.72925, 0.019026518)
+_visualNodes = [NodePath("../Vampire/vampire/ears_002"), NodePath("../Vampire/vampire/eyebrows_001"), NodePath("../Vampire/vampire/eyes_001"), NodePath("../Vampire/vampire/hair_001"), NodePath("../Vampire/vampire/hands_001"), NodePath("../Vampire/vampire/head_001"), NodePath("../Vampire/vampire/mouth_001"), NodePath("../Vampire/vampire/teeth_001")]
+
+[node name="Floor2" parent="." unique_id=2007849042 instance=ExtResource("13_sbnka")]
+transform = Transform3D(-1, -2.990035e-08, -8.2150535e-08, 1.3027008e-15, 0.9396927, -0.34202015, 8.742278e-08, -0.34202015, -0.9396926, -2.874971, 1.7214141, -6.731392)
+
+[node name="Floor3" parent="." unique_id=650697721 instance=ExtResource("14_cts1l")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -2.9193974, 3.4221897, 3.0316348)
+
+[node name="Path3D" type="Path3D" parent="." unique_id=743219133 node_paths=PackedStringArray("_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.744751, 0.14895582, 5.1795583)
+curve = SubResource("Curve3D_rmkky")
+script = ExtResource("15_y8ngv")
+_target = NodePath("../Vampire2")
+_speed = 1.0
+
+[node name="Path3D3" type="Path3D" parent="." unique_id=516302840 node_paths=PackedStringArray("_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.744751, 4.731444, 5.1795583)
+curve = SubResource("Curve3D_rmkky")
+script = ExtResource("15_y8ngv")
+_target = NodePath("../Vampire4")
+_speed = 1.0
+
+[node name="Path3D2" type="Path3D" parent="." unique_id=223557215 node_paths=PackedStringArray("_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.827925, 0.14895582, 5.1795583)
+curve = SubResource("Curve3D_rmkky")
+script = ExtResource("15_y8ngv")
+_target = NodePath("../Vampire")
+_speed = 1.0
