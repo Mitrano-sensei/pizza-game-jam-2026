@@ -92,6 +92,9 @@ _color = 0
 _isActive = true
 _laserPointPool = NodePath("../LaserPool")
 
+[node name="BézierCurve_002" parent="Laser & Lamp Stuff/LaserLauncher8/fenetre" parent_id_path=PackedInt32Array(871134612, 287143877) index="2" unique_id=1600215552]
+visible = false
+
 [node name="LaserLauncher6" parent="Laser & Lamp Stuff" unique_id=342941057 node_paths=PackedStringArray("_laserPointPool") instance=ExtResource("8_5kr5b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5098438, 4.91685, 7.3984294)
 _color = 0
@@ -212,3 +215,6 @@ curve = SubResource("Curve3D_rmkky")
 script = ExtResource("15_ycs7g")
 _target = NodePath("../Vampire")
 _speed = 1.0
+
+[editable path="Laser & Lamp Stuff/LaserLauncher8"]
+[editable path="Laser & Lamp Stuff/LaserLauncher8/fenetre"]

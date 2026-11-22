@@ -14,10 +14,34 @@ public partial class LaserLauncher : Node3D
 
 	[ExportCategory("Object Pool Settings")]
 	[Export] private ObjectPool _laserPointPool;
+	
+	[ExportCategory("Curtains")]
+	[Export] private Node3D _curtain1;
+	[Export] private Node3D _curtain2;
 
+	[Export] private float _openXValue = 0f;
+	[Export] private float _closedXValue1 = .15f;
+	[Export] private float _closedXValue2 = -.15f;
+	[Export] private float _curtainDuration = .4f;
+	
 	private List<Vector3> _points = new();
 	private List<Vector3> _lastPoints = new();
 	private List<ILaserBeam> _currentLasers = new();
+
+  public override void _Ready()
+	{
+		if (!_isActive) MoveCurtains(_closedXValue1, _closedXValue2);
+		
+		ColorCurtain((MeshInstance3D)_curtain1);
+		ColorCurtain((MeshInstance3D)_curtain2);
+	}
+
+	private void ColorCurtain(MeshInstance3D curtain)
+	{
+		var material = (StandardMaterial3D)curtain.GetActiveMaterial(0).Duplicate();
+		material.AlbedoColor = _color.ToColor() * .75f;
+		curtain.SetSurfaceOverrideMaterial(0, material);
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -121,12 +145,21 @@ public partial class LaserLauncher : Node3D
 
 	public void Enable()
 	{
+		MoveCurtains(_openXValue, _openXValue);
 		SetEnabled(true);
 	}
 	
 	public void Disable()
 	{
+		MoveCurtains(_closedXValue1, _closedXValue2);
 		SetEnabled(false);
+	}
+
+private void MoveCurtains(float x1, float x2)
+	{
+		var tween = CreateTween().SetParallel().SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.InOut);
+		tween.TweenProperty(_curtain1, "position:x", x1, _curtainDuration);
+		tween.TweenProperty(_curtain2, "position:x", x2, _curtainDuration);
 	}
 
 	private void ClearLasers()

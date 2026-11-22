@@ -103,6 +103,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2528477, 4.844558, 7.719567
 _isActive = true
 _laserPointPool = NodePath("../LaserPool")
 
+[node name="BézierCurve_002" parent="Laser & Lamp Stuff/LaserLauncher10/fenetre" parent_id_path=PackedInt32Array(1894019443, 287143877) index="2" unique_id=1600215552]
+visible = false
+
 [node name="LaserLauncher11" parent="Laser & Lamp Stuff" unique_id=35092 node_paths=PackedStringArray("_laserPointPool") instance=ExtResource("8_10ks8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.030098, 4.844558, 7.719567)
 _color = 0
@@ -286,5 +289,7 @@ transform = Transform3D(-0.36552235, 0, -0.9308026, 0, 1, 0, 0.9308026, 0, -0.36
 [node name="Table3" parent="." unique_id=1141689769 instance=ExtResource("20_pphjr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50621414, 0.6942482, -13.477726)
 
+[editable path="Laser & Lamp Stuff/LaserLauncher10"]
+[editable path="Laser & Lamp Stuff/LaserLauncher10/fenetre"]
 [editable path="Floor3"]
 [editable path="Floor5"]
