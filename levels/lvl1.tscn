@@ -18,7 +18,7 @@ size = Vector3(100, 0.1, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_pyaib"]
 size = Vector3(100, 0.1, 100)
 
-[node name="Tutorial1" type="Node3D" unique_id=1118483983 node_paths=PackedStringArray("_camera", "_lamps")]
+[node name="Lvl1" type="Node3D" unique_id=1118483983 node_paths=PackedStringArray("_camera", "_lamps")]
 script = ExtResource("1_pyaib")
 _camera = NodePath("Character & Camera Stuff/CameraHolder")
 _lamps = [NodePath("Laser & Lamp Stuff/Lamp2")]

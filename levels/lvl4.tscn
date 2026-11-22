@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cu7s33eyqmq6i" path="res://modular/ceiling.tscn" id="11_dhme2"]
 [ext_resource type="PackedScene" uid="uid://bmn5avb6pexhu" path="res://modular/floor_modular.tscn" id="11_fwyeg"]
 
-[node name="Lvl2" type="Node3D" unique_id=1118483983 node_paths=PackedStringArray("_camera", "_lamps", "_looseCondition")]
+[node name="Lvl4" type="Node3D" unique_id=1118483983 node_paths=PackedStringArray("_camera", "_lamps", "_looseCondition")]
 script = ExtResource("1_it0hp")
 _camera = NodePath("Character & Camera Stuff/CameraHolder")
 _lamps = [NodePath("Laser & Lamp Stuff/RedLamp1"), NodePath("Laser & Lamp Stuff/GreenLamp3")]

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b438we18nopmb"]
+
+[ext_resource type="Script" uid="uid://dlh1dui7ngqcj" path="res://laser/receiver/PushableObject.cs" id="1_ptjb6"]
+[ext_resource type="PackedScene" uid="uid://dhm2jxgjbwxvs" path="res://assets/table/table.glb" id="2_i2265"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_drwxn"]
+size = Vector3(2, 1.262, 1.75)
+
+[node name="Table" type="RigidBody3D" unique_id=638941358]
+script = ExtResource("1_ptjb6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=266311544]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45005322, 0)
+shape = SubResource("BoxShape3D_drwxn")
+
+[node name="table" parent="." unique_id=499626903 instance=ExtResource("2_i2265")]
+transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, 0, 0, 0)
